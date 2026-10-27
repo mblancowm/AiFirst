@@ -1,0 +1,422 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "da343b32-24e3-402d-ab57-bd6e1dd4c8be",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "CourseModules": {
+      "name": "CourseModules",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Week": {
+          "name": "Week",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Title": {
+          "name": "Title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Tagline": {
+          "name": "Tagline",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Summary": {
+          "name": "Summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Objective": {
+          "name": "Objective",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Minutes": {
+          "name": "Minutes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "SectionsJson": {
+          "name": "SectionsJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ExampleTitle": {
+          "name": "ExampleTitle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Example": {
+          "name": "Example",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PracticeTitle": {
+          "name": "PracticeTitle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Practice": {
+          "name": "Practice",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DeliverablesJson": {
+          "name": "DeliverablesJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CheckpointQuestion": {
+          "name": "CheckpointQuestion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CheckpointOptionsJson": {
+          "name": "CheckpointOptionsJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CorrectAnswerIndex": {
+          "name": "CorrectAnswerIndex",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PromptCode": {
+          "name": "PromptCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "SortOrder": {
+          "name": "SortOrder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Learners": {
+      "name": "Learners",
+      "columns": {
+        "LearnerId": {
+          "name": "LearnerId",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DisplayName": {
+          "name": "DisplayName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAtUtc": {
+          "name": "CreatedAtUtc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "StudentProgress": {
+      "name": "StudentProgress",
+      "columns": {
+        "LearnerId": {
+          "name": "LearnerId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ModuleId": {
+          "name": "ModuleId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Reflection": {
+          "name": "Reflection",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "SelectedAnswer": {
+          "name": "SelectedAnswer",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CheckpointPassed": {
+          "name": "CheckpointPassed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "Completed": {
+          "name": "Completed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "UpdatedAtUtc": {
+          "name": "UpdatedAtUtc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "CompletedAtUtc": {
+          "name": "CompletedAtUtc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "IX_StudentProgress_ModuleId": {
+          "name": "IX_StudentProgress_ModuleId",
+          "columns": [
+            "ModuleId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "StudentProgress_LearnerId_Learners_LearnerId_fk": {
+          "name": "StudentProgress_LearnerId_Learners_LearnerId_fk",
+          "tableFrom": "StudentProgress",
+          "tableTo": "Learners",
+          "columnsFrom": [
+            "LearnerId"
+          ],
+          "columnsTo": [
+            "LearnerId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "StudentProgress_ModuleId_CourseModules_Id_fk": {
+          "name": "StudentProgress_ModuleId_CourseModules_Id_fk",
+          "tableFrom": "StudentProgress",
+          "tableTo": "CourseModules",
+          "columnsFrom": [
+            "ModuleId"
+          ],
+          "columnsTo": [
+            "Id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "StudentProgress_LearnerId_ModuleId_pk": {
+          "columns": [
+            "LearnerId",
+            "ModuleId"
+          ],
+          "name": "StudentProgress_LearnerId_ModuleId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "TrainingGroupMembers": {
+      "name": "TrainingGroupMembers",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "GroupId": {
+          "name": "GroupId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Name": {
+          "name": "Name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Role": {
+          "name": "Role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AddedAtUtc": {
+          "name": "AddedAtUtc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "IX_TrainingGroupMembers_GroupId_Name": {
+          "name": "IX_TrainingGroupMembers_GroupId_Name",
+          "columns": [
+            "GroupId",
+            "Name"
+          ],
+          "isUnique": true
+        },
+        "IX_TrainingGroupMembers_GroupId": {
+          "name": "IX_TrainingGroupMembers_GroupId",
+          "columns": [
+            "GroupId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "TrainingGroupMembers_GroupId_TrainingGroups_Id_fk": {
+          "name": "TrainingGroupMembers_GroupId_TrainingGroups_Id_fk",
+          "tableFrom": "TrainingGroupMembers",
+          "tableTo": "TrainingGroups",
+          "columnsFrom": [
+            "GroupId"
+          ],
+          "columnsTo": [
+            "Id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "TrainingGroups": {
+      "name": "TrainingGroups",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "Name": {
+          "name": "Name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ProjectCode": {
+          "name": "ProjectCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAtUtc": {
+          "name": "CreatedAtUtc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {
+        "IX_TrainingGroups_Name": {
+          "name": "IX_TrainingGroups_Name",
+          "columns": [
+            "Name"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

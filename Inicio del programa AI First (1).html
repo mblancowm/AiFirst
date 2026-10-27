@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070154">
+  <meta name="description" content="Presentación de inicio del programa de equipos AI-first: objetivos, plan y criterios de validación.">
+  <title>Programa de equipos AI-first | Inicio</title>
+  <style>
+    :root {
+      --purple: #070154;
+      --purple-2: #373274;
+      --blue: #0047ff;
+      --magenta: #f900d3;
+      --yellow: #f6eb21;
+      --slate: #50658e;
+      --line: #ced7e6;
+      --pale: #e8eef8;
+      --paper: #f8f8f8;
+      --white: #fff;
+      --font: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; background: var(--paper); }
+    body { margin: 0; color: var(--purple); background: var(--paper); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 21; color: var(--purple); background: var(--white); border-bottom: 1px solid var(--line); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: min(1280px,100%); min-height: 78px; margin: 0 auto; padding: 0 clamp(18px,5vw,72px); }
+    .brand { display: flex; align-items: center; gap: 18px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .brand img { display: block; width: 124px; height: auto; }
+    .brand span { padding-left: 18px; border-left: 1px solid var(--line); }
+    .site-nav { display: flex; gap: 17px; font-size: 11px; font-weight: 700; }
+    .site-nav a { position: relative; padding: 7px 0; text-decoration: none; white-space: nowrap; }
+    .site-nav a:hover,.site-nav a.is-current { color: var(--blue); }
+    .site-nav a.is-current::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--magenta); content: ""; }
+    .story { overflow-x: clip; }
+    .scene { position: relative; display: grid; min-height: 100svh; align-items: center; padding: 104px clamp(22px,7vw,102px) 105px; scroll-snap-align: start; scroll-snap-stop: always; isolation: isolate; }
+    .scene-inner { width: min(1280px,100%); margin: 0 auto; }
+    .scene-intro { overflow: hidden; color: var(--white); background: var(--purple); }
+    .scene-intro::before,.scene-intro::after { position: absolute; z-index: -1; border-radius: 50%; content: ""; pointer-events: none; }
+    .scene-intro::before { width: min(76vw,1000px); aspect-ratio: 1; top: -55%; right: -18%; background: radial-gradient(circle,rgba(0,71,255,.42),rgba(55,50,116,.22) 42%,transparent 70%); animation: drift 14s ease-in-out infinite alternate; }
+    .scene-intro::after { width: 480px; aspect-ratio: 1; bottom: -60%; left: -15%; background: radial-gradient(circle,rgba(249,0,211,.17),transparent 67%); }
+    .cover-grid { display: grid; grid-template-columns: .88fr 1.12fr; align-items: center; gap: clamp(34px,6vw,82px); }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow::before { width: 20px; height: 2px; background: var(--magenta); content: ""; }
+    h1 { max-width: 650px; margin: 22px 0 19px; color: var(--white); font-size: clamp(47px,6.8vw,86px); font-weight: 700; letter-spacing: -.065em; line-height: .92; }
+    h1 em { color: var(--magenta); font-style: normal; }
+    .cover-copy { max-width: 650px; margin: 0; color: rgba(255,255,255,.8); font-size: clamp(15px,1.6vw,20px); line-height: 1.5; }
+    .cover-copy strong { color: #fff; }
+    .cover-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+    .cover-facts span { padding: 8px 11px; border: 1px solid rgba(255,255,255,.24); color: rgba(255,255,255,.9); background: rgba(255,255,255,.06); font-size: 10px; font-weight: 700; letter-spacing: .04em; }
+    .cover-thesis { max-width: 540px; margin: 18px 0 0; color: #f6eb21; font-size: 12px; font-weight: 650; line-height: 1.45; }
+    .workbench-wrap { position: relative; width: 100%; max-width: 650px; justify-self: end; perspective: 1300px; }
+    .workbench-wrap::before { position: absolute; inset: 12% -7% -8% 8%; border-radius: 30px; background: linear-gradient(135deg,rgba(0,71,255,.34),rgba(249,0,211,.12)); filter: blur(38px); content: ""; }
+    .workbench { position: relative; overflow: hidden; padding: 16px; border: 1px solid rgba(255,255,255,.24); border-radius: 19px; color: var(--purple); background: linear-gradient(145deg,#eef2ff,#fff 54%,#e9edfb); box-shadow: 0 30px 90px rgba(0,0,0,.38); transform: rotateY(-3deg) rotateX(1deg); }
+    .workbench::after { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(125deg,rgba(255,255,255,.45),transparent 34%,transparent 68%,rgba(0,71,255,.04)); content: ""; pointer-events: none; }
+    .workbench-topbar { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; min-height: 25px; color: var(--slate); font-size: 8px; font-weight: 800; letter-spacing: .12em; }
+    .window-dots { display: flex; gap: 4px; }
+    .window-dots i { width: 7px; height: 7px; border-radius: 50%; background: #b9c3d6; }
+    .window-dots i:first-child { background: #f27687; }.window-dots i:nth-child(2) { background: #f0c85b; }.window-dots i:nth-child(3) { background: #48c7a4; }
+    .workspace-label { overflow: hidden; flex: 1; text-overflow: ellipsis; white-space: nowrap; }
+    .live-status { display: inline-flex; align-items: center; gap: 5px; padding: 5px 7px; border: 1px solid #d3e8de; border-radius: 999px; color: #147c5a; background: #f1fbf6; font-size: 7px; letter-spacing: .06em; }
+    .live-status i { width: 6px; height: 6px; border-radius: 50%; background: #17a876; box-shadow: 0 0 0 3px rgba(23,168,118,.13); animation: status-pulse 1.8s ease-in-out infinite; }
+    .workbench-body { position: relative; z-index: 1; display: grid; grid-template-columns: 1.03fr .97fr; gap: 10px; margin-top: 11px; }
+    .workbench-stack { display: grid; min-width: 0; align-content: start; gap: 10px; }
+    .request-card { padding: 13px; border: 1px solid #dde4f1; border-radius: 11px; background: #fff; box-shadow: 0 7px 20px rgba(7,1,84,.045); }
+    .panel-kicker { display: flex; align-items: center; justify-content: space-between; gap: 6px; color: #657493; font-size: 7px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .panel-kicker strong { color: var(--blue); font-size: inherit; }
+    .request-card h2 { margin: 9px 0 5px; color: var(--purple); font-size: 17px; letter-spacing: -.04em; line-height: 1.05; }
+    .request-card p { margin: 0; color: #5e6c89; font-size: 9px; line-height: 1.4; }
+    .context-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .context-pills span { padding: 4px 6px; border-radius: 4px; color: #344778; background: #edf2ff; font-size: 7px; font-weight: 750; }
+    .build-card { overflow: hidden; padding: 12px; border: 1px solid rgba(255,255,255,.09); border-radius: 11px; color: #fff; background: #111333; box-shadow: 0 10px 24px rgba(7,1,84,.17); }
+    .build-card .panel-kicker { color: #aab8df; }
+    .build-card .panel-kicker strong { color: #f675d8; }
+    .build-label { display: flex; align-items: center; gap: 6px; margin: 9px 0 8px; color: #fff; font-size: 9px; font-weight: 700; }
+    .build-label i { width: 6px; height: 6px; border-radius: 50%; background: var(--magenta); box-shadow: 0 0 8px var(--magenta); animation: status-pulse 1.4s ease-in-out infinite; }
+    .code-snippet { display: grid; gap: 5px; padding: 8px 7px; border: 1px solid rgba(255,255,255,.07); border-radius: 6px; background: rgba(255,255,255,.035); }
+    .code-row { display: grid; grid-template-columns: 14px 1fr; align-items: center; gap: 7px; min-height: 5px; }
+    .code-row small { color: #657193; font: 7px/1 monospace; }
+    .code-row i { display: block; width: var(--bar); height: 4px; border-radius: 99px; background: linear-gradient(90deg,#7093ff,#c278ff); transform-origin: left; animation: code-grow 2.7s ease-in-out infinite alternate; }
+    .code-row:nth-child(2) i,.code-row:nth-child(5) i { background: linear-gradient(90deg,#e86acb,#f3c55b); animation-delay: -.8s; }
+    .code-row:nth-child(3) i,.code-row:nth-child(6) i { background: linear-gradient(90deg,#50cbb1,#9edcc5); animation-delay: -1.3s; }
+    .build-progress { overflow: hidden; height: 3px; margin-top: 9px; border-radius: 99px; background: rgba(255,255,255,.12); }
+    .build-progress i { display: block; width: 72%; height: 100%; border-radius: inherit; background: linear-gradient(90deg,var(--blue),var(--magenta)); animation: build-progress 4s ease-in-out infinite alternate; }
+    .app-preview { overflow: hidden; border: 1px solid #dce3f0; border-radius: 11px; background: #fff; box-shadow: 0 8px 23px rgba(7,1,84,.08); }
+    .preview-bar { display: flex; align-items: center; gap: 4px; height: 23px; padding: 0 8px; border-bottom: 1px solid #e9edf4; background: #f8f9fc; }
+    .preview-bar i { width: 5px; height: 5px; border-radius: 50%; background: #c5cde0; }
+    .preview-bar span { overflow: hidden; margin-left: 4px; color: #7b88a2; font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+    .preview-app { padding: 11px; }
+    .preview-app > small { color: var(--blue); font-size: 7px; font-weight: 800; letter-spacing: .12em; }
+    .preview-app h3 { margin: 6px 0 9px; color: var(--purple); font-size: 13px; letter-spacing: -.03em; }
+    .preview-date { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; color: #63708b; font-size: 7px; font-weight: 700; }
+    .preview-date b { color: var(--purple); font-size: 8px; }
+    .booking-row { display: grid; grid-template-columns: 30px 1fr; align-items: center; gap: 6px; padding: 7px 0; border-top: 1px solid #edf0f5; }
+    .booking-row time { color: var(--blue); font-size: 7px; font-weight: 800; }
+    .booking-row strong { display: block; color: #332c66; font-size: 7px; }
+    .booking-row small { display: block; margin-top: 2px; color: #7a879e; font-size: 6px; }
+    .book-button { display: block; margin-top: 5px; padding: 7px 8px; border-radius: 5px; color: #fff; background: var(--blue); font-size: 7px; font-weight: 750; text-align: center; animation: button-glow 2.7s ease-in-out infinite; }
+    .review-card { display: flex; align-items: center; gap: 8px; padding: 10px; border: 1px solid #d6eee2; border-radius: 9px; background: #f2fbf6; }
+    .review-check { display: grid; flex: 0 0 24px; width: 24px; height: 24px; place-items: center; border-radius: 50%; color: #fff; background: #15976b; font-size: 12px; font-weight: 800; box-shadow: 0 0 0 4px rgba(21,151,107,.1); }
+    .review-copy { flex: 1; min-width: 0; }
+    .review-copy strong { display: block; color: #14694f; font-size: 8px; }
+    .review-copy small { display: block; margin-top: 3px; color: #668777; font-size: 7px; }
+    .review-stamp { color: #15976b; font-size: 7px; font-weight: 900; letter-spacing: .07em; }
+    .workbench-flow { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; margin-top: 11px; padding: 10px 12px; border: 1px solid #dce3f0; border-radius: 9px; background: rgba(255,255,255,.88); }
+    .flow-step { display: flex; flex: 0 0 auto; align-items: center; gap: 5px; color: #6a7690; font-size: 7px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .flow-step b { display: grid; width: 18px; height: 18px; place-items: center; border-radius: 50%; color: #fff; background: var(--blue); font-size: 7px; }
+    .flow-step:last-child b { background: #15976b; }
+    .flow-track { position: relative; overflow: hidden; flex: 1; height: 2px; background: #dce3f0; }
+    .flow-track i { position: absolute; inset: 0 auto 0 -35%; width: 35%; background: linear-gradient(90deg,transparent,var(--magenta),var(--blue)); animation: flow-pulse 2.6s ease-in-out infinite; }
+    .section-light { color: var(--purple); background: var(--paper); }
+    .section-light .eyebrow { color: var(--purple-2); }
+    .section-dark { color: var(--white); background: var(--purple); }
+    .section-dark .eyebrow { color: #fff; }
+    .section-dark .section-title { color: #fff; }
+    .section-dark .section-copy { color: rgba(255,255,255,.78); }
+    .section-title { max-width: 850px; margin: 17px 0 16px; color: var(--purple); font-size: clamp(37px,5vw,67px); font-weight: 700; letter-spacing: -.06em; line-height: .98; }
+    .section-title em { color: var(--blue); font-style: normal; }
+    .section-dark .section-title em { color: var(--magenta); }
+    .section-copy { max-width: 720px; margin: 0; color: var(--slate); font-size: clamp(14px,1.35vw,18px); line-height: 1.55; }
+    .objective-layout { display: grid; grid-template-columns: .78fr 1.22fr; align-items: center; gap: clamp(34px,7vw,96px); }
+    .objective-title { max-width: 520px; margin: 17px 0 20px; color: var(--purple); font-size: clamp(39px,5.6vw,73px); font-weight: 700; letter-spacing: -.06em; line-height: .98; }
+    .objective-title em { color: var(--blue); font-style: normal; }
+    .outcome-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .outcome-card { position: relative; overflow: hidden; min-height: 156px; padding: 19px 20px; border: 1px solid var(--line); border-radius: 15px; background: #fff; box-shadow: 0 16px 45px rgba(7,1,84,.07); transition: transform .35s, box-shadow .35s; }
+    .outcome-card:hover { box-shadow: 0 22px 58px rgba(7,1,84,.13); transform: translateY(-4px); }
+    .outcome-card::before { position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--blue); content: ""; }
+    .outcome-card:nth-child(2)::before { background: var(--magenta); }
+    .outcome-card:nth-child(3)::before { background: #18a579; }
+    .outcome-card:nth-child(4)::before { background: #f1c40f; }
+    .outcome-card small { color: var(--blue); font-size: 9px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .outcome-card h3 { margin: 10px 0 6px; color: var(--purple); font-size: 16px; }
+    .outcome-card p { margin: 0; color: var(--slate); font-size: 12px; line-height: 1.45; }
+    .harness-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(30px,6vw,78px); align-items: center; }
+    .harness-groups { display: grid; gap: 14px; }
+    .harness-group { padding: 15px 17px 16px; border: 1px solid rgba(255,255,255,.18); border-left: 3px solid var(--blue); background: rgba(255,255,255,.055); }
+    .harness-group:nth-child(2) { border-left-color: var(--magenta); }
+    .harness-group:nth-child(3) { border-left-color: var(--yellow); }
+    .harness-group h3 { margin: 0 0 10px; color: #fff; font-size: 11px; letter-spacing: .11em; text-transform: uppercase; }
+    .harness-items { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+    .harness-item { min-height: 77px; padding: 11px 12px; color: rgba(255,255,255,.8); background: rgba(255,255,255,.07); font-size: 10px; line-height: 1.38; }
+    .harness-item b { display: block; margin-bottom: 4px; color: #fff; font-size: 11px; }
+    .harness-item span { color: #c5d3ff; }
+    .gate-note { margin: 14px 0 0; padding: 12px 14px; border-left: 3px solid var(--yellow); color: rgba(255,255,255,.88); background: rgba(246,235,33,.08); font-size: 11px; line-height: 1.45; }
+    .roles-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(32px,6vw,82px); align-items: center; }
+    .role-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
+    .role-card { position: relative; min-height: 143px; padding: 18px; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 35px rgba(7,1,84,.06); }
+    .role-card::before { position: absolute; inset: 0 0 auto; height: 3px; background: var(--blue); content: ""; }
+    .role-card:nth-child(2)::before { background: var(--magenta); }
+    .role-card:nth-child(3)::before { background: #18a579; }
+    .role-card:nth-child(4)::before { background: #e7c900; }
+    .role-card .role-no { color: var(--slate); font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+    .role-card h3 { margin: 8px 0 5px; color: var(--purple); font-size: 17px; }
+    .role-card code { color: var(--blue); font: 600 10px/1.4 var(--font); }
+    .role-card p { margin: 9px 0 0; color: var(--slate); font-size: 11px; line-height: 1.4; }
+    .contracts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+    .contract-card { padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; color: var(--purple-2); background: #fff; font-size: 11px; line-height: 1.45; }
+    .contract-card strong { display: block; margin-bottom: 3px; color: var(--purple); }
+    .timeline-layout { display: grid; grid-template-columns: .72fr 1.28fr; align-items: center; gap: clamp(32px,6vw,80px); }
+    .timeline { position: relative; display: grid; gap: 10px; }
+    .timeline::before { position: absolute; top: 14px; bottom: 15px; left: 22px; width: 2px; background: linear-gradient(var(--blue),var(--magenta),var(--yellow)); content: ""; }
+    .timeline-card { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 13px; align-items: start; padding: 12px 14px 13px 0; }
+    .week-mark { position: relative; z-index: 1; display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid #a8b9ff; border-radius: 50%; color: var(--blue); background: #fff; font-size: 10px; font-weight: 800; text-align: center; }
+    .timeline-card:nth-child(2) .week-mark { border-color: #f2a4dc; color: #b50098; }
+    .timeline-card:nth-child(3) .week-mark { border-color: #f0de44; color: #655900; }
+    .timeline-card h3 { margin: 2px 0 5px; color: var(--purple); font-size: 15px; }
+    .timeline-card p { margin: 0; color: var(--slate); font-size: 11px; line-height: 1.45; }
+    .timeline-card .gate { display: inline-block; margin-top: 7px; padding: 4px 7px; color: var(--purple); background: #edf2ff; font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+    .timeline-foot { margin: 9px 0 0; padding: 12px 14px; border-left: 3px solid var(--magenta); color: var(--purple-2); background: #fff; font-size: 10px; line-height: 1.45; }
+    .criteria-layout { display: grid; grid-template-columns: .68fr 1.32fr; gap: clamp(30px,6vw,80px); align-items: center; }
+    .criteria-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .criteria-card { display: grid; grid-template-columns: 34px 1fr; gap: 11px; min-height: 116px; padding: 15px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); }
+    .criteria-check { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid rgba(246,235,33,.58); color: var(--yellow); font-size: 15px; font-weight: 800; }
+    .criteria-card h3 { margin: 1px 0 5px; color: #fff; font-size: 12px; line-height: 1.3; }
+    .criteria-card p { margin: 0; color: rgba(255,255,255,.72); font-size: 10px; line-height: 1.4; }
+    .criteria-bottom { grid-column: 1 / -1; margin: 4px 0 0; color: #c5d3ff; font-size: 10px; line-height: 1.4; }
+    .expect-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(30px,6vw,78px); align-items: center; }
+    .expect-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .expect-panel { padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: 0 14px 38px rgba(7,1,84,.06); }
+    .expect-panel.ai { color: #fff; border-color: rgba(255,255,255,.18); background: var(--purple); }
+    .expect-panel h3 { margin: 0 0 12px; font-size: 14px; }
+    .expect-panel ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .expect-panel li { position: relative; padding-left: 17px; color: var(--slate); font-size: 11px; line-height: 1.45; }
+    .expect-panel li::before { position: absolute; top: 1px; left: 0; color: var(--blue); content: "✓"; font-weight: 800; }
+    .expect-panel.ai li { color: rgba(255,255,255,.8); }
+    .expect-panel.ai li::before { color: var(--magenta); }
+    .expect-callout { margin: 13px 0 0; padding: 12px 14px; border-left: 3px solid var(--yellow); color: var(--purple); background: #fff9cc; font-size: 11px; font-weight: 650; line-height: 1.45; }
+    .start-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(30px,6vw,80px); align-items: center; }
+    .start-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .start-card { display: grid; grid-template-columns: 34px 1fr; gap: 11px; align-items: start; min-height: 102px; padding: 15px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); }
+    .start-card:last-child { grid-column: 1 / -1; }
+    .start-no { display: grid; width: 30px; height: 30px; place-items: center; color: var(--purple); background: var(--yellow); font-size: 11px; font-weight: 800; }
+    .start-card h3 { margin: 0 0 4px; color: #fff; font-size: 12px; }
+    .start-card p { margin: 0; color: rgba(255,255,255,.72); font-size: 10px; line-height: 1.4; }
+    .closing-ask { margin-top: 16px; padding: 14px 16px; border-left: 3px solid var(--magenta); color: #fff; background: rgba(249,0,211,.09); font-size: 12px; line-height: 1.45; }
+    .source-note { margin-top: 13px; color: rgba(255,255,255,.54); font-size: 9px; }
+    .source-note a { color: #c5d3ff; }
+    .scene-meta { position: absolute; right: clamp(22px,7vw,102px); bottom: 25px; left: clamp(22px,7vw,102px); display: flex; align-items: center; justify-content: space-between; gap: 18px; color: var(--slate); font-size: 9px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+    .section-dark .scene-meta,.scene-intro .scene-meta { color: rgba(255,255,255,.66); }
+    .scroll-cue { display: inline-flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
+    .scroll-cue:hover { color: var(--blue); }
+    .section-dark .scroll-cue:hover,.scene-intro .scroll-cue:hover { color: var(--yellow); }
+    .scroll-cue .arrow { font-size: 15px; }
+    .reveal { opacity: 1; transform: none; }
+    .has-js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+    .has-js .is-active .reveal { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .12s; }
+    .delay-2 { transition-delay: .24s; }
+    .delay-3 { transition-delay: .36s; }
+    @keyframes drift { to { transform: translate(-5%,7%) scale(1.08); } }
+    @keyframes status-pulse { 50% { opacity: .42; box-shadow: 0 0 0 1px rgba(23,168,118,.08); } }
+    @keyframes code-grow { to { transform: scaleX(.72); opacity: .58; } }
+    @keyframes build-progress { to { width: 91%; } }
+    @keyframes button-glow { 50% { box-shadow: 0 4px 15px rgba(0,71,255,.32); } }
+    @keyframes flow-pulse { to { transform: translateX(390%); } }
+    @media (max-width: 1000px) {
+      .header-inner { gap: 16px; }
+      .brand { gap: 12px; }.brand img { width: 106px; }.brand span { padding-left: 12px; }
+      .site-nav { gap: 11px; font-size: 10px; }
+      .cover-grid,.objective-layout,.harness-layout,.roles-layout,.timeline-layout,.criteria-layout,.expect-layout,.start-layout { grid-template-columns: 1fr; gap: 22px; }
+      .cover-grid { padding-top: 8px; }
+      .cover-copy { max-width: 820px; }
+      .workbench-wrap { max-width: 760px; margin: 0 auto; }
+      .objective-title { max-width: 800px; }
+      .harness-layout > div:first-child,.roles-layout > div:first-child,.timeline-layout > div:first-child,.criteria-layout > div:first-child,.expect-layout > div:first-child,.start-layout > div:first-child { max-width: 820px; }
+      .harness-groups { grid-template-columns: 1fr 1fr; }
+      .harness-group:last-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 650px) {
+      html { scroll-snap-type: y proximity; }
+      .header-inner { min-height: 0; flex-wrap: wrap; gap: 5px 12px; padding: 9px 14px 7px; }
+      .brand { gap: 9px; font-size: 10px; }.brand img { width: 91px; }.brand span { padding-left: 9px; }
+      .site-nav { order: 2; width: 100%; gap: 17px; overflow-x: auto; padding: 1px 0 5px; scrollbar-width: thin; font-size: 9px; }
+      .scene { min-height: 100svh; padding: 128px 20px 22px; }
+      .cover-grid { gap: 14px; }
+      h1 { margin: 16px 0 13px; font-size: clamp(47px,14vw,72px); }
+      .cover-copy { font-size: 14px; }
+      .cover-facts { gap: 6px; margin-top: 16px; }.cover-facts span { padding: 7px 8px; font-size: 8px; }
+      .cover-thesis { margin-top: 12px; font-size: 10px; }
+      .workbench-wrap { margin-top: 0; }
+      .workbench { padding: 8px; border-radius: 14px; transform: none; }
+      .workbench-topbar { gap: 6px; min-height: 20px; font-size: 6px; }
+      .window-dots { gap: 3px; }.window-dots i { width: 5px; height: 5px; }
+      .live-status { gap: 3px; padding: 4px 5px; font-size: 6px; }.live-status i { width: 5px; height: 5px; }
+      .workbench-body { gap: 6px; margin-top: 7px; }.workbench-stack { gap: 6px; }
+      .request-card { padding: 8px; border-radius: 8px; }.panel-kicker { font-size: 5px; }.request-card h2 { margin: 6px 0 4px; font-size: 12px; }.request-card p { font-size: 7px; }.context-pills { gap: 3px; margin-top: 6px; }.context-pills span { padding: 3px 4px; font-size: 5px; }
+      .build-card { padding: 8px; border-radius: 8px; }.build-label { gap: 4px; margin: 6px 0; font-size: 7px; }.code-snippet { gap: 4px; padding: 6px 5px; }.code-row { grid-template-columns: 10px 1fr; gap: 4px; min-height: 4px; }.code-row small { font-size: 5px; }.code-row i { height: 3px; }.build-progress { margin-top: 6px; }
+      .app-preview { border-radius: 8px; }.preview-bar { height: 18px; padding: 0 6px; }.preview-bar i { width: 4px; height: 4px; }.preview-bar span { font-size: 5px; }.preview-app { padding: 7px; }.preview-app > small { font-size: 5px; }.preview-app h3 { margin: 4px 0 6px; font-size: 9px; }.preview-date { margin-bottom: 4px; font-size: 5px; }.preview-date b { font-size: 6px; }.booking-row { grid-template-columns: 24px 1fr; gap: 3px; padding: 5px 0; }.booking-row time,.booking-row strong { font-size: 5px; }.booking-row small { font-size: 4px; }.book-button { margin-top: 3px; padding: 5px; font-size: 5px; }
+      .review-card { gap: 5px; padding: 6px; border-radius: 7px; }.review-check { flex-basis: 18px; width: 18px; height: 18px; font-size: 9px; }.review-copy strong,.review-stamp { font-size: 6px; }.review-copy small { margin-top: 2px; font-size: 5px; }
+      .workbench-flow { gap: 4px; margin-top: 7px; padding: 7px 5px; border-radius: 7px; }.flow-step { gap: 3px; font-size: 5px; }.flow-step b { width: 14px; height: 14px; font-size: 5px; }.flow-track { min-width: 8px; }
+      .section-title,.objective-title { margin: 10px 0 11px; font-size: clamp(35px,10vw,53px); }
+      .section-copy { font-size: 13px; }
+      .objective-layout,.harness-layout,.roles-layout,.timeline-layout,.criteria-layout,.expect-layout,.start-layout { gap: 17px; }
+      .outcome-stack { gap: 8px; }.outcome-card { min-height: 130px; padding: 13px; border-radius: 11px; }.outcome-card h3 { margin: 8px 0 5px; font-size: 13px; }.outcome-card p { font-size: 10px; }
+      .harness-groups { grid-template-columns: 1fr; gap: 8px; }.harness-group { padding: 12px; }.harness-group:last-child { grid-column: auto; }.harness-items { gap: 6px; }.harness-item { min-height: 68px; padding: 9px; font-size: 9px; }.harness-item b { font-size: 10px; }.gate-note { margin-top: 8px; font-size: 10px; }
+      .role-grid { gap: 7px; }.role-card { min-height: 125px; padding: 12px; }.role-card h3 { font-size: 14px; }.role-card p { font-size: 9px; }.role-card code { font-size: 8px; }.contracts { gap: 7px; margin-top: 8px; }.contract-card { padding: 10px; font-size: 9px; }
+      .timeline { gap: 5px; }.timeline-card { grid-template-columns: 38px 1fr; gap: 10px; padding: 8px 4px 8px 0; }.timeline::before { left: 18px; }.week-mark { width: 38px; height: 38px; font-size: 8px; }.timeline-card h3 { font-size: 12px; }.timeline-card p { font-size: 9px; }.timeline-card .gate { margin-top: 5px; font-size: 8px; }.timeline-foot { margin-top: 5px; padding: 10px; font-size: 9px; }
+      .criteria-grid { gap: 7px; }.criteria-card { grid-template-columns: 25px 1fr; gap: 7px; min-height: 108px; padding: 10px; }.criteria-check { width: 24px; height: 24px; font-size: 12px; }.criteria-card h3 { font-size: 10px; }.criteria-card p { font-size: 8px; }.criteria-bottom { font-size: 9px; }
+      .expect-columns { gap: 7px; }.expect-panel { padding: 13px; border-radius: 11px; }.expect-panel h3 { margin-bottom: 9px; font-size: 12px; }.expect-panel ul { gap: 8px; }.expect-panel li { padding-left: 14px; font-size: 9px; }.expect-callout { margin-top: 8px; padding: 10px; font-size: 9px; }
+      .start-list { gap: 7px; }.start-card { grid-template-columns: 25px 1fr; gap: 7px; min-height: 88px; padding: 10px; }.start-no { width: 23px; height: 23px; font-size: 9px; }.start-card h3 { font-size: 10px; }.start-card p { font-size: 8px; }.closing-ask { margin-top: 9px; padding: 11px; font-size: 10px; }.source-note { font-size: 8px; }
+      .scene-meta { position: static; align-self: end; margin: 20px auto 0; font-size: 7px; }.scroll-cue { max-width: 46%; text-align: right; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#intro" aria-label="Programa de equipos AI-first, inicio"><img src="../Asset Improvement Hub Demo/assets/west-monroe.svg" alt="West Monroe" width="124" height="26"><span>Programa AI-first</span></a>
+      <nav class="site-nav" aria-label="Secciones de la presentación">
+        <a href="#intro" data-link="intro" class="is-current">Inicio</a>
+        <a href="#objetivo" data-link="objetivo">Objetivo</a>
+        <a href="#harness" data-link="harness">Harness</a>
+        <a href="#roles" data-link="roles">Equipo</a>
+        <a href="#plan" data-link="plan">Plan</a>
+        <a href="#validacion" data-link="validacion">Validación</a>
+        <a href="#participantes" data-link="participantes">Participar</a>
+        <a href="#arranque" data-link="arranque">Arranque</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="story">
+    <section class="scene scene-intro is-active" id="intro" aria-labelledby="intro-title">
+      <div class="scene-inner cover-grid">
+        <div>
+          <div class="eyebrow reveal">Programa de equipos AI-first · Kickoff</div>
+          <h1 class="reveal delay-1" id="intro-title">Del plan<br>al <em>producto.</em></h1>
+          <p class="cover-copy reveal delay-2">En cuatro semanas, transforma una idea en una app funcional. La IA acelera la construcción; tu equipo define el rumbo, dirige el trabajo y valida lo que entrega.</p>
+          <div class="cover-facts reveal delay-3"><span>4 semanas</span><span>Equipos de 3–4</span><span>2–8 h por semana</span></div>
+          <p class="cover-thesis reveal delay-3">Una idea real. Un equipo que dirige. Un producto que todos pueden explicar.</p>
+        </div>
+        <div class="workbench-wrap reveal delay-2" role="img" aria-label="Ejemplo visual de un equipo que define un plan, dirige a la IA para construir una aplicación y valida el resultado">
+          <div class="workbench">
+            <div class="workbench-topbar">
+              <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="workspace-label">TEAM WORKSPACE / PROYECTO DE EJEMPLO</span>
+              <span class="live-status"><i aria-hidden="true"></i>EN MARCHA</span>
+            </div>
+            <div class="workbench-body">
+              <div class="workbench-stack">
+                <article class="request-card">
+                  <div class="panel-kicker"><span>01 / INTENCIÓN</span><strong>PLAN APROBADO</strong></div>
+                  <h2>Agenda de citas</h2>
+                  <p>Reservar una hora disponible en pocos pasos, con reglas claras para el equipo y sus clientes.</p>
+                  <div class="context-pills"><span>execution-plan.md</span><span>Contrato API</span></div>
+                </article>
+                <article class="build-card">
+                  <div class="panel-kicker"><span>02 / CONSTRUCCIÓN</span><strong>IA EN ACCIÓN</strong></div>
+                  <div class="build-label"><i aria-hidden="true"></i> Codex trabaja con el plan y el contrato</div>
+                  <div class="code-snippet" aria-hidden="true">
+                    <div class="code-row"><small>01</small><i style="--bar:88%"></i></div>
+                    <div class="code-row"><small>02</small><i style="--bar:61%"></i></div>
+                    <div class="code-row"><small>03</small><i style="--bar:76%"></i></div>
+                    <div class="code-row"><small>04</small><i style="--bar:52%"></i></div>
+                    <div class="code-row"><small>05</small><i style="--bar:91%"></i></div>
+                    <div class="code-row"><small>06</small><i style="--bar:67%"></i></div>
+                  </div>
+                  <div class="build-progress" aria-hidden="true"><i></i></div>
+                </article>
+              </div>
+              <div class="workbench-stack">
+                <article class="app-preview">
+                  <div class="preview-bar" aria-hidden="true"><i></i><i></i><i></i><span>localhost / citas</span></div>
+                  <div class="preview-app">
+                    <small>RESERVAS · HOY</small>
+                    <h3>Hola, Alex</h3>
+                    <div class="preview-date"><span>Martes, 20 de octubre</span><b>•••</b></div>
+                    <div class="booking-row"><time>10:30</time><span><strong>Diseño de producto</strong><small>Con Morgan Lee · 30 min</small></span></div>
+                    <div class="booking-row"><time>13:00</time><span><strong>Revisión de proyecto</strong><small>Con Taylor Kim · 45 min</small></span></div>
+                    <span class="book-button">+ Nueva cita</span>
+                  </div>
+                </article>
+                <div class="review-card">
+                  <span class="review-check" aria-hidden="true">✓</span>
+                  <span class="review-copy"><strong>Revisión humana completa</strong><small>La persona explica y valida el cambio</small></span>
+                  <span class="review-stamp">LISTO</span>
+                </div>
+              </div>
+            </div>
+            <div class="workbench-flow" aria-hidden="true">
+              <span class="flow-step"><b>1</b> Plan</span><span class="flow-track"><i></i></span>
+              <span class="flow-step"><b>2</b> Build</span><span class="flow-track"><i></i></span>
+              <span class="flow-step"><b>3</b> Review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scene-meta"><span>01 · Bienvenida</span><a class="scroll-cue" href="#objetivo">Conoce el objetivo <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-light" id="objetivo" aria-labelledby="objetivo-title">
+      <div class="scene-inner objective-layout">
+        <div>
+          <div class="eyebrow">02 / Objetivo y resultados</div>
+          <h2 class="objective-title">Aprender a <em>dirigir</em> el ciclo completo.</h2>
+          <p class="section-copy">Cada developer practica cómo definir una necesidad, preparar un plan, delegar tareas a la IA, revisar el resultado y entregar software que puede explicar.</p>
+        </div>
+        <div class="outcome-stack">
+          <article class="outcome-card"><small>01 · Producto</small><h3>Una app funcional</h3><p>Un resultado demostrable, construido casi por completo con apoyo de IA.</p></article>
+          <article class="outcome-card"><small>02 · Repositorio</small><h3>Un proyecto entendible</h3><p>Otro equipo puede clonarlo, comprenderlo y extenderlo con su documentación.</p></article>
+          <article class="outcome-card"><small>03 · Experiencia</small><h3>Un rol con ownership</h3><p>Cada persona dirige la IA en una capa y entiende el sistema completo.</p></article>
+          <article class="outcome-card"><small>04 · Reutilización</small><h3>Prácticas que permanecen</h3><p>Skills, plantillas y aprendizajes listos para el siguiente equipo.</p></article>
+        </div>
+      </div>
+      <div class="scene-meta"><span>02 · Qué aprenderemos</span><a class="scroll-cue" href="#harness">Ver la base de trabajo <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-dark" id="harness" aria-labelledby="harness-title">
+      <div class="scene-inner harness-layout">
+        <div>
+          <div class="eyebrow">03 / La base compartida</div>
+          <h2 class="section-title" id="harness-title">El <em>harness</em> hace visible cómo trabajamos.</h2>
+          <p class="section-copy">Cada equipo prepara un entorno común para que la IA tenga contexto, cada cambio siga un plan y la calidad pueda comprobarse.</p>
+          <p class="gate-note"><strong>Puerta de inicio:</strong> se aprueban primero el monorepo y la documentación como código. Después comienza el código de la aplicación.</p>
+        </div>
+        <div class="harness-groups">
+          <div class="harness-group">
+            <h3>Contexto y dirección</h3>
+            <div class="harness-items">
+              <div class="harness-item"><b>Monorepo</b><span>AGENTS.md / CLAUDE.md</span>, estructura y reglas para agentes.</div>
+              <div class="harness-item"><b>Docs as code</b>Idea, propuesta, arquitectura, roles y dependencias en Markdown.</div>
+              <div class="harness-item"><b>Planning first</b>Un plan de funcionalidad aprobado antes de cada cambio de código.</div>
+              <div class="harness-item"><b>Skills base</b>Flujos reutilizables para que cada rol trabaje con su contexto.</div>
+            </div>
+          </div>
+          <div class="harness-group">
+            <h3>Entrega y confianza</h3>
+            <div class="harness-items">
+              <div class="harness-item"><b>CI en GitHub</b>Lint, tests y build en cada PR.</div>
+              <div class="harness-item"><b>Seguridad de Git</b>Rama principal protegida, PR obligatorio y secretos fuera del repo.</div>
+              <div class="harness-item"><b>Calidad</b>Revisión humana y cruzada; quien revisa puede explicar el cambio.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scene-meta"><span>03 · Qué prepara cada equipo</span><a class="scroll-cue" href="#roles">Conoce los roles <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-light" id="roles" aria-labelledby="roles-title">
+      <div class="scene-inner roles-layout">
+        <div>
+          <div class="eyebrow">04 / Roles y colaboración</div>
+          <h2 class="section-title" id="roles-title">Cada persona lidera una capa. Los <em>contratos</em> conectan al equipo.</h2>
+          <p class="section-copy">El trabajo se distribuye por responsabilidad y se integra con interfaces compartidas acordadas por todos.</p>
+        </div>
+        <div>
+          <div class="role-grid">
+            <article class="role-card"><span class="role-no">DEV 01</span><h3>API</h3><code>apps/api/</code><p>Endpoints y reglas del servicio; sigue los contratos aprobados.</p></article>
+            <article class="role-card"><span class="role-no">DEV 02</span><h3>Base de datos</h3><code>packages/db/</code><p>Modelo, migraciones y datos de ejemplo.</p></article>
+            <article class="role-card"><span class="role-no">DEV 03</span><h3>Web</h3><code>apps/web/</code><p>Experiencia de usuario conectada al contrato de API.</p></article>
+            <article class="role-card"><span class="role-no">DEV 04</span><h3>Integración de IA</h3><code>packages/ai/</code><p>Integración, prompts y evaluaciones con API y datos de ejemplo.</p></article>
+          </div>
+          <div class="contracts">
+            <div class="contract-card"><strong>Contratos compartidos</strong>OpenAPI y tipos en <code>packages/contracts/</code>; se acuerdan en la semana 1 y se cambian por PR.</div>
+            <div class="contract-card"><strong>Revisión entre roles</strong>Cada developer revisa al menos un PR de otra capa cada semana. Con 3 personas, IA se combina con API o web.</div>
+          </div>
+        </div>
+      </div>
+      <div class="scene-meta"><span>04 · Cómo se organiza el equipo</span><a class="scroll-cue" href="#plan">Recorre las cuatro semanas <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-light" id="plan" aria-labelledby="plan-title">
+      <div class="scene-inner timeline-layout">
+        <div>
+          <div class="eyebrow">05 / Plan de trabajo</div>
+          <h2 class="section-title" id="plan-title">Cuatro semanas para preparar, construir y <em>demostrar.</em></h2>
+          <p class="section-copy">La propuesta reserva entre 2 y 8 horas semanales por developer. El trabajo de aplicación comienza una vez aprobados el repo y la documentación.</p>
+        </div>
+        <div>
+          <div class="timeline">
+            <article class="timeline-card"><span class="week-mark">SEM<br>01</span><div><h3>Alinear la base</h3><p>Definir proyecto, roles y contratos; preparar monorepo, docs y protecciones de Git.</p><span class="gate">PUERTA 1 · Repo y documentación aprobados</span></div></article>
+            <article class="timeline-card"><span class="week-mark">SEM<br>02–03</span><div><h3>Planificar, construir e integrar</h3><p>Aprobar planes por funcionalidad, usar al menos una skill por rol desde semana 2 y avanzar con CI y revisión cruzada por PR.</p><span class="gate">PUERTA 2 · Cada PR tiene plan, CI y revisión humana</span></div></article>
+            <article class="timeline-card"><span class="week-mark">SEM<br>04</span><div><h3>Validar y compartir</h3><p>Integrar las cuatro capas, mostrar la aplicación, explicar decisiones y registrar aprendizajes.</p><span class="gate">PUERTA 3 · Demo, criterios completos y retro</span></div></article>
+          </div>
+          <p class="timeline-foot">Cadencia propuesta a partir de la duración y los hitos del programa. El equipo y su mentor afinan el alcance semanal según el proyecto elegido.</p>
+        </div>
+      </div>
+      <div class="scene-meta"><span>05 · Cadencia de cuatro semanas</span><a class="scroll-cue" href="#validacion">Revisa cómo validar <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-dark" id="validacion" aria-labelledby="validacion-title">
+      <div class="scene-inner criteria-layout">
+        <div>
+          <div class="eyebrow">06 / Criterios de éxito</div>
+          <h2 class="section-title" id="validacion-title">El cierre se demuestra con <em>evidencia.</em></h2>
+          <p class="section-copy">Al final de la semana 4, el equipo presenta el trabajo y muestra cómo se construyó, revisó y puede continuar.</p>
+        </div>
+        <div class="criteria-grid">
+          <article class="criteria-card"><span class="criteria-check" aria-hidden="true">✓</span><div><h3>Demo integrada de 10 minutos</h3><p>La API, la base de datos, la web y la pieza de IA funcionan juntas.</p></div></article>
+          <article class="criteria-card"><span class="criteria-check" aria-hidden="true">✓</span><div><h3>Repo y harness verificables</h3><p>Están los siete componentes; CI está verde, main protegida y docs completas.</p></div></article>
+          <article class="criteria-card"><span class="criteria-check" aria-hidden="true">✓</span><div><h3>Plan + PR + review humano</h3><p>Todo código integrado pasó por plan aprobado, pull request y revisión humana.</p></div></article>
+          <article class="criteria-card"><span class="criteria-check" aria-hidden="true">✓</span><div><h3>Cada persona explica su parte</h3><p>Puede explicar su capa y una decisión de arquitectura tomada.</p></div></article>
+          <article class="criteria-card"><span class="criteria-check" aria-hidden="true">✓</span><div><h3>Retro escrita</h3><p><code>docs/retro.md</code> registra lo que funcionó con IA, lo que no y las skills creadas.</p></div></article>
+          <article class="criteria-card"><span class="criteria-check" aria-hidden="true">✓</span><div><h3>Algo reutilizable para otros</h3><p>Al menos una skill o plantilla útil publicada en el repo base.</p></div></article>
+          <p class="criteria-bottom">El programa considera exitoso al equipo cuando puede mostrar los seis resultados.</p>
+        </div>
+      </div>
+      <div class="scene-meta"><span>06 · Qué significa terminar</span><a class="scroll-cue" href="#participantes">Aclaremos tu papel <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-light" id="participantes" aria-labelledby="participantes-title">
+      <div class="scene-inner expect-layout">
+        <div>
+          <div class="eyebrow">07 / Qué esperamos de participantes</div>
+          <h2 class="section-title" id="participantes-title">La IA produce. El equipo <em>responde por el resultado.</em></h2>
+          <p class="section-copy">La práctica consiste en mantener claridad sobre el objetivo, el plan, el código que se integra y la evidencia que lo respalda.</p>
+        </div>
+        <div>
+          <div class="expect-columns">
+            <article class="expect-panel"><h3>Tu parte como developer</h3><ul><li>Ser dueño de una capa y coordinar sus dependencias.</li><li>Dar a la IA contexto, límites y una tarea concreta.</li><li>Revisar y entender los cambios antes de integrarlos.</li><li>Compartir el trabajo y revisar el PR de otro rol.</li></ul></article>
+            <article class="expect-panel ai"><h3>La IA como colaboradora</h3><ul><li>Usa Codex o Claude para generar y modificar código.</li><li>Apóyate en los archivos de instrucciones, planes y skills del proyecto.</li><li>Entrega cambios que el equipo pueda verificar con tests y CI.</li><li>Ayuda a acelerar el trabajo; la aceptación sigue siendo humana.</li></ul></article>
+          </div>
+          <p class="expect-callout">La señal de aprendizaje es que puedas explicar qué hace tu capa, cómo la revisaste y qué decisión importante tomaste.</p>
+        </div>
+      </div>
+      <div class="scene-meta"><span>07 · Aprender dirigiendo</span><a class="scroll-cue" href="#arranque">Veamos qué hace falta <span class="arrow">↓</span></a></div>
+    </section>
+
+    <section class="scene section-dark" id="arranque" aria-labelledby="arranque-title">
+      <div class="scene-inner start-layout">
+        <div>
+          <div class="eyebrow">08 / Alineación para comenzar</div>
+          <h2 class="section-title" id="arranque-title">Cinco acuerdos convierten la propuesta en un <em>inicio.</em></h2>
+          <p class="section-copy">Necesitamos resolver lo operativo para que cada equipo pueda dedicar su tiempo a aprender y entregar.</p>
+          <div class="closing-ask"><strong>Al salir de esta sesión:</strong> alineemos quién participa, qué proyecto tomará cada equipo y qué apoyo necesita para empezar.</div>
+          <p class="source-note">Fuente: <a href="Programa de equipos AI-first propuesta para management_6739.md">propuesta para management · 15 de octubre de 2026</a></p>
+        </div>
+        <div class="start-list">
+          <article class="start-card"><span class="start-no">01</span><div><h3>Tiempo protegido</h3><p>2–8 horas semanales por developer durante las cuatro semanas.</p></div></article>
+          <article class="start-card"><span class="start-no">02</span><div><h3>Herramientas y repos</h3><p>Acceso a Codex o Claude y GitHub con repos privados y protección de rama.</p></div></article>
+          <article class="start-card"><span class="start-no">03</span><div><h3>Equipos y proyectos</h3><p>Confirmar quién participa y qué proyecto construirá cada equipo.</p></div></article>
+          <article class="start-card"><span class="start-no">04</span><div><h3>Sponsor y mentor técnico</h3><p>Una persona que desbloquee dudas y una que revise el plan de semana 1.</p></div></article>
+          <article class="start-card"><span class="start-no">05</span><div><h3>Fecha de demo</h3><p>Agendar desde el inicio la presentación al cierre de la semana 4.</p></div></article>
+        </div>
+      </div>
+      <div class="scene-meta"><span>08 · Acordemos el punto de partida</span><a class="scroll-cue" href="#intro">Volver al inicio <span class="arrow">↺</span></a></div>
+    </section>
+  </main>
+  <script>
+    document.body.classList.add('has-js');
+    const scenes = [...document.querySelectorAll('.scene')];
+    const chapterLinks = [...document.querySelectorAll('[data-link]')];
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            const scene = entry.target;
+            scenes.forEach((item) => item.classList.toggle('is-active', item === scene));
+            chapterLinks.forEach((link) => {
+              const current = link.dataset.link === scene.id;
+              link.classList.toggle('is-current', current);
+              if (current) link.setAttribute('aria-current', 'step');
+              else link.removeAttribute('aria-current');
+            });
+          }
+        }
+      }, { threshold: [0.6, 0.75] });
+      scenes.forEach((scene) => observer.observe(scene));
+    }
+  </script>
+</body>
+</html>

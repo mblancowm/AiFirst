@@ -1,0 +1,32 @@
+{
+  "name": "@ai-first-training/web",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ai-first-training/contracts": "workspace:*",
+    "@tanstack/react-query": "5.104.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-markdown": "^10.1.0",
+    "rehype-sanitize": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "vike": "0.4.268",
+    "vike-react": "0.6.31"
+  },
+  "scripts": {
+    "dev": "vike dev --host 127.0.0.1 --port 3000",
+    "build": "vike build",
+    "preview": "vike preview --host 127.0.0.1 --port 3000",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
+  }
+}

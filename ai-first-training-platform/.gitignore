@@ -1,0 +1,26 @@
+# Bun / Vite / Vike workspaces
+node_modules/
+apps/*/node_modules/
+apps/*/dist/
+apps/*/.vike/
+apps/training-api/data/
+apps/training-api/*.sqlite
+apps/training-api/*.sqlite-shm
+apps/training-api/*.sqlite-wal
+
+# Previous Angular application
+web/node_modules/
+web/dist/
+web/.angular/
+web/out-tsc/
+
+# .NET
+server/**/bin/
+server/**/obj/
+
+# Local logs and user-specific data
+.local/
+*.user
+.env
+.env.*
+!.env.example

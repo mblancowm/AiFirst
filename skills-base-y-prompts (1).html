@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ideas, prompts y plantillas iniciales para crear skills de equipo AI-first.">
+  <title>Algunos skills con los que puedes arrancar</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1f2937;
+      --muted: #526174;
+      --line: #d8e0e8;
+      --paper: #ffffff;
+      --canvas: #f3f6f8;
+      --accent: #176b72;
+      --accent-soft: #e8f3f3;
+      --code: #f1f4f6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+    }
+
+    header { margin-bottom: 28px; }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { line-height: 1.25; }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      letter-spacing: -0.035em;
+    }
+
+    h2 { margin: 0 0 14px; font-size: 1.55rem; }
+    h3 { margin: 26px 0 10px; font-size: 1.08rem; }
+    p { margin: 0 0 14px; }
+    a { color: #075985; text-underline-offset: 0.16em; }
+
+    .lede {
+      max-width: 720px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .notice, .intro, .skill {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+    }
+
+    .notice {
+      margin: 24px 0 34px;
+      padding: 18px 20px;
+      border-left: 5px solid var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .notice p:last-child, .intro p:last-child { margin-bottom: 0; }
+
+    .intro { margin: 0 0 22px; padding: 22px 24px; }
+    .intro ul { margin: 8px 0 0; padding-left: 22px; }
+    .intro li + li { margin-top: 5px; }
+
+    .skill {
+      margin: 20px 0;
+      padding: 26px;
+      box-shadow: 0 2px 6px rgb(15 23 42 / 4%);
+    }
+
+    .skill-number {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .label {
+      margin: 22px 0 8px;
+      font-size: 0.9rem;
+      font-weight: 750;
+    }
+
+    .prompt, pre {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--code);
+      color: #18212b;
+      font: 0.88rem/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .prompt { margin: 0; padding: 16px; }
+    pre { margin: 10px 0 0; padding: 16px; white-space: pre; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    .note {
+      margin-top: 20px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      background: #f5f8fa;
+      color: var(--muted);
+    }
+
+    .note strong { color: var(--ink); }
+
+    .table-wrap { overflow-x: auto; margin-top: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #edf2f5; }
+
+    .references {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .references li + li { margin-top: 7px; }
+    .source-link { font-weight: 650; }
+
+    .jump-menu {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      margin: 0 0 22px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgb(255 255 255 / 96%);
+      box-shadow: 0 2px 6px rgb(15 23 42 / 6%);
+    }
+
+    .jump-menu summary {
+      cursor: pointer;
+      padding: 11px 16px;
+      color: var(--accent);
+      font-weight: 750;
+      list-style: none;
+    }
+
+    .jump-menu summary::-webkit-details-marker { display: none; }
+    .jump-menu summary::after { content: "+"; float: right; }
+    .jump-menu details[open] summary::after { content: "−"; }
+
+    .jump-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 14px;
+      padding: 0 16px 15px;
+    }
+
+    .jump-group-title {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 750;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .jump-group a {
+      display: block;
+      padding: 4px 7px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .jump-group a:hover, .jump-group a:focus-visible {
+      background: var(--accent-soft);
+      text-decoration: underline;
+    }
+
+    section[id], h1[id] { scroll-margin-top: 58px; }
+
+    @media (max-width: 600px) {
+      main { width: min(100% - 20px, 920px); padding: 28px 0 40px; }
+      .skill, .intro { padding: 19px; }
+      th, td { min-width: 150px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      main { width: 100%; padding: 0; }
+      .skill, .intro, .notice { break-inside: avoid; box-shadow: none; }
+      .jump-menu { display: none; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Programa de equipos AI-first</p>
+      <h1 id="page-title">Algunos skills con los que puedes arrancar</h1>
+      <p class="lede">Ideas para que cada equipo cree skills útiles para su forma de trabajar. Los prompts ayudan a diseñarlos; cada equipo decide el contenido final.</p>
+    </header>
+
+    <nav class="jump-menu" aria-label="Saltar entre skills y secciones">
+      <details>
+        <summary>Saltar a una sección o skill</summary>
+        <div class="jump-links">
+          <div class="jump-group">
+            <p class="jump-group-title">Inicio</p>
+            <a href="#page-title">Presentación</a>
+            <a href="#shared-title">Qué debería dejar claro un skill</a>
+            <a href="#flow-ideas-title">Ideas útiles para el flujo</a>
+          </div>
+          <div class="jump-group">
+            <p class="jump-group-title">Skills</p>
+            <a href="#monorepo">Set Up and Validate the Monorepo</a>
+            <a href="#plan">Create a Feature Plan</a>
+            <a href="#adr">Record an ADR</a>
+            <a href="#code-review">PR Code Review</a>
+            <a href="#comments">PR Triage</a>
+            <a href="#create-pr">Create a PR</a>
+          </div>
+          <div class="jump-group">
+            <p class="jump-group-title">Cierre</p>
+            <a href="#markdown-title">Cómo mantener la documentación útil</a>
+            <a href="#reading-title">Lecturas de referencia</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+
+    <aside class="notice" aria-label="Nota sobre adaptación al proyecto">
+      <p><strong>Esto es una ayuda y un ejemplo, no una receta obligatoria.</strong></p>
+      <p>Cada skill puede variar según la necesidad del proyecto, la arquitectura, las tecnologías y el agente que use el equipo. Adapta el prompt, la plantilla, la ubicación y las verificaciones a tu contexto.</p>
+    </aside>
+
+    <section class="intro" aria-labelledby="shared-title">
+      <h2 id="shared-title">Qué debería dejar claro un skill</h2>
+      <ul>
+        <li>Qué trabajo ayuda a completar y cuándo usarlo.</li>
+        <li>Qué contexto necesita y qué resultado produce.</li>
+        <li>Qué verificaciones realiza y qué decisiones corresponden a una persona.</li>
+        <li>Qué ejemplo explica su uso en el repositorio.</li>
+      </ul>
+      <p style="margin-top: 14px;">Los seis ejemplos siguientes se enfocan en el flujo de trabajo y no dependen del stack. Los skills de backend, frontend, datos e IA se definen cuando el proyecto ya eligió su arquitectura y tecnologías.</p>
+    </section>
+
+    <section class="intro" aria-labelledby="flow-ideas-title">
+      <h2 id="flow-ideas-title">Ideas útiles para el flujo del equipo</h2>
+      <ul>
+        <li>Usa el plan aprobado como referencia para revisar el cambio. Si la implementación se aparta del alcance o de la solución acordada, documenta y justifica el ajuste en el artefacto que ya usa el equipo.</li>
+        <li>Organiza el code review en pasadas: comportamiento y regresiones; seguridad y privacidad; cumplimiento del plan, criterios y políticas del proyecto. Prioriza hallazgos accionables y evita repetir checks que CI ya cubre o llenar el reporte con preferencias de estilo.</li>
+        <li>Un skill guía el trabajo, pero no garantiza una regla por sí solo. Para controles obligatorios, define verificaciones automáticas y protecciones del flujo; la aprobación del PR permanece en las personas responsables.</li>
+        <li>Más adelante, si los skills se vuelven parte crítica del delivery, prueba sus cambios con tareas representativas y resultados esperados. No es un requisito para empezar.</li>
+      </ul>
+    </section>
+
+    <section class="skill" id="monorepo" aria-labelledby="monorepo-title">
+      <span class="skill-number">Skill 1</span>
+      <h2 id="monorepo-title">Set Up and Validate the Monorepo</h2>
+      <p><strong>Objetivo:</strong> establecer la estructura del repositorio y el contexto persistente del agente; comprobar que esté el archivo de instrucciones aplicable (<code>AGENTS.md</code> para Codex, <code>CLAUDE.md</code> para Claude Code, o ambos si el equipo usa ambas herramientas) junto con los demás elementos acordados.</p>
+
+      <p class="label">Prompt para crearlo</p>
+      <blockquote class="prompt">Crea un skill llamado “Set Up and Validate the Monorepo”. Usa la estructura de referencia y las instrucciones vigentes del repositorio. El archivo de contexto del agente es esencial: <code>AGENTS.md</code> cuando el equipo use Codex, <code>CLAUDE.md</code> cuando use Claude Code, y ambos si acuerda usar las dos herramientas. El skill debe ayudar a crear y validar ese archivo, comprobando que describa el propósito del proyecto, el mapa del repositorio, comandos de desarrollo y validación, convenciones, dónde leer el plan aprobado y qué decisiones requieren revisión humana. Después valida las demás carpetas y archivos aprobados; clasifica cada uno como presente, ausente, incompleto o no aplica. No debe exigir documentos que solo aparezcan en ejemplos ni crear un archivo Markdown para cada tema. Si se solicita inicializar, debe crear solo los elementos aprobados que falten y no sobrescribir archivos sin autorización. Al crear este skill, crea únicamente su archivo; no inicialices ni modifiques el monorepo.</blockquote>
+
+      <p class="label">Plantilla: esqueleto neutral</p>
+      <pre><code>/
+├── README.md
+├── AGENTS.md       # si el equipo usa Codex
+├── CLAUDE.md       # si el equipo usa Claude Code
+├── apps/
+│   └── [aplicación o servicio elegido]
+├── packages/
+│   └── [paquetes compartidos, si se necesitan]
+├── docs/
+│   └── [artefactos definidos por el flujo del proyecto]
+├── [directorio de skills del agente elegido]
+└── .github/
+    ├── workflows/                  # si se usa GitHub Actions
+    ├── CODEOWNERS                   # si se definen propietarios
+    └── pull_request_template.md     # si el equipo adopta una plantilla</code></pre>
+
+      <p class="label">Referencia para el inventario de archivos</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Artefacto</th><th>Cuándo incluirlo</th><th>Referencia inicial</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>README.md</code></td><td>Como entrada al repositorio.</td><td>Propósito e instrucciones útiles; raíz como ubicación preferida.</td></tr>
+            <tr><td>Instrucciones del agente</td><td>Para las herramientas elegidas.</td><td><code>AGENTS.md</code> para Codex y <code>CLAUDE.md</code> para Claude Code. Tener ambos si se usan ambas herramientas y mantenerlos compatibles.</td></tr>
+            <tr><td>Plan por funcionalidad</td><td>Antes de implementar.</td><td>Seguir la convención acordada; la propuesta de management sugiere <code>docs/planning/</code>.</td></tr>
+            <tr><td>ADR</td><td>Cuando haya una decisión que documentar.</td><td>La propuesta sugiere <code>docs/adr/</code>; no se necesita crear archivos vacíos al inicio.</td></tr>
+            <tr><td>Plantilla de PR</td><td>Si el equipo decide estandarizar PRs.</td><td>GitHub admite ubicaciones en la raíz, <code>docs/</code> o <code>.github/</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="label">Plantilla inicial del archivo de instrucciones del agente</p>
+      <p>Este archivo aporta el contexto persistente para que el agente entienda el proyecto y trabaje según sus convenciones. Usa <code>AGENTS.md</code> con Codex o <code>CLAUDE.md</code> con Claude Code. Si el equipo usa ambos, mantén el contenido consistente.</p>
+      <pre><code># Instrucciones del agente
+
+## Proyecto
+- Propósito:
+- Alcance actual:
+
+## Mapa del repositorio
+- &lt;carpeta&gt;: responsabilidad y owner, si está definido.
+
+## Desarrollo y validación
+- Cómo iniciar el proyecto:
+- Cómo ejecutar lint, tipos y pruebas:
+- Validaciones que requiere un PR:
+
+## Convenciones
+- Patrones y estilos aprobados:
+- Contratos, dependencias y decisiones que se deben consultar:
+
+## Flujo de trabajo
+- Antes de codificar, consultar el plan aprobado en &lt;ubicación elegida&gt;.
+- Proponer un plan cuando no exista; esperar aprobación si así lo exige el equipo.
+- Mantener el plan y la documentación afectados por el cambio.
+
+## Límites y revisión humana
+- No inventar decisiones o resultados de validación.
+- Señalar dudas y pedir revisión para las decisiones que el equipo reservó a personas.</code></pre>
+      <p class="note"><strong>Nota:</strong> adapta el árbol, el contenido de <code>AGENTS.md</code> o <code>CLAUDE.md</code>, y el resto del inventario a la arquitectura, herramientas y convenciones del proyecto. No crees un archivo Markdown por cada tema; valida solo lo que el equipo acuerde.</p>
+    </section>
+
+    <section class="skill" id="plan" aria-labelledby="plan-title">
+      <span class="skill-number">Skill 2</span>
+      <h2 id="plan-title">Create a Feature Plan</h2>
+      <p><strong>Objetivo:</strong> analizar una solicitud y producir un plan revisable con el formato del equipo, antes de comenzar a codificar.</p>
+
+      <p class="label">Prompt para crearlo</p>
+      <blockquote class="prompt">Crea un skill llamado “Create a Feature Plan”. Inspecciona los planes y plantillas aprobados y sigue la convención del equipo. Analiza el requerimiento y el repositorio: objetivo, alcance, criterios verificables, patrones existentes, componentes afectados, contratos, dependencias, riesgos, alternativas, validación y reversión cuando aplique. Separa hechos, supuestos y preguntas abiertas; no inventes decisiones ni escribas código. Deja el resultado en borrador para revisión humana. Al crear este skill, crea únicamente su archivo y no un plan de funcionalidad real.</blockquote>
+
+      <p class="label">Plantilla: plan combinado de referencia</p>
+      <p>La propuesta de management ubica un plan por funcionalidad en <code>docs/planning/&lt;nombre-corto&gt;.md</code>. Usa la ubicación acordada y adapta esta plantilla a las convenciones del equipo.</p>
+      <pre><code># Plan: &lt;nombre de la funcionalidad&gt;
+
+**Estado:** Borrador | En revisión | Aprobado | Bloqueado | Completado
+**Issue:** &lt;enlace o identificador, si existe&gt;
+**Responsable:** &lt;persona o rol&gt;
+**Última actualización:** &lt;AAAA-MM-DD&gt;
+
+## 1. Objetivo y contexto
+- ¿Qué problema o necesidad se atiende?
+- ¿Quién se beneficia y cuál es el resultado esperado?
+
+## 2. Alcance
+### Incluye
+- ...
+### No incluye
+- ...
+
+## 3. Criterios de aceptación
+- [ ] &lt;resultado observable y verificable&gt;
+
+## 4. Análisis realizado
+### Estado actual y patrones del repositorio
+- Archivos, módulos o flujos relevantes:
+- Convenciones existentes que se deben seguir:
+### Impacto y dependencias
+- Componentes, capas o datos afectados:
+- Contratos e integraciones afectados:
+- Dependencias entre tareas o roles:
+### Riesgos y casos límite
+- Seguridad, privacidad y permisos:
+- Errores, estados límite y compatibilidad:
+- Riesgos y mitigaciones:
+### Alternativas y decisiones pendientes
+- Alternativas y trade-offs:
+- Decisiones que requieren aprobación:
+
+## 5. Solución propuesta
+- Descripción de alto nivel:
+- Cambios por componente o archivo, si se conocen:
+
+## 6. Secuencia de trabajo
+1. ...
+
+## 7. Validación
+- Pruebas automáticas:
+- Validación manual o evidencia de demo:
+- Criterios de aceptación cubiertos:
+
+## 8. Despliegue y reversión
+- Pasos de despliegue, migración o configuración:
+- Detección de problemas y reversión, si aplica:
+
+## 9. Supuestos y preguntas abiertas
+- Supuestos por confirmar:
+- Preguntas, responsable y fecha objetivo:
+
+## 10. Aprobación
+- Revisor:
+- Estado y fecha:
+- Comentarios o condiciones:</code></pre>
+      <p class="note"><strong>Nota:</strong> adapta los puntos y el nivel de detalle al tamaño, riesgo y flujo de tu proyecto. Si una sección no aplica, indícalo con una razón breve. No empieces la implementación hasta que el plan esté aprobado.</p>
+    </section>
+
+    <section class="skill" id="adr" aria-labelledby="adr-title">
+      <span class="skill-number">Skill 3</span>
+      <h2 id="adr-title">Record an ADR</h2>
+      <p><strong>Objetivo:</strong> documentar una decisión, las opciones consideradas y sus consecuencias en el lugar y formato que acuerde el equipo.</p>
+
+      <p class="label">Prompt para crearlo</p>
+      <blockquote class="prompt">Crea un skill llamado “Record an ADR”. Localiza la ubicación y la plantilla de ADR acordadas; si no existen, propone una plantilla y pide al equipo aprobar la ubicación antes de crear un ADR. Inspecciona los ADRs existentes para seguir su numeración, formato y estados. El skill debe ayudar a describir contexto, criterios, opciones, trade-offs, decisión, consecuencias, validación y referencias. Debe mantener la diferencia entre propuesta y decisión aceptada; no inventar consenso ni marcar una decisión como aceptada sin aprobación. Al crear este skill, crea únicamente su archivo; no registres un ADR real.</blockquote>
+
+      <p class="label">Plantilla ADR</p>
+      <pre><code># ADR &lt;número&gt;: &lt;título de la decisión&gt;
+
+**Estado:** Propuesto | Aceptado | Rechazado | Reemplazado
+**Fecha:** &lt;AAAA-MM-DD&gt;
+**Responsables:** &lt;personas o roles&gt;
+**Reemplaza / reemplazado por:** &lt;ADR, si aplica&gt;
+
+## Contexto
+¿Qué situación requiere una decisión? Incluir restricciones y evidencia.
+
+## Criterios de decisión
+- ...
+
+## Opciones consideradas
+### Opción A: &lt;nombre&gt;
+- Ventajas:
+- Costos o riesgos:
+### Opción B: &lt;nombre&gt;
+- Ventajas:
+- Costos o riesgos:
+
+## Decisión
+¿Qué opción se propone o se acepta, y por qué?
+
+## Consecuencias
+### Beneficios
+- ...
+### Costos, riesgos o trabajo posterior
+- ...
+
+## Plan de validación o seguimiento
+- ...
+
+## Referencias
+- Issue, plan, contrato u otros ADRs relacionados:</code></pre>
+      <p class="note"><strong>Nota:</strong> adapta la ubicación, numeración, estados y secciones a las convenciones del proyecto. Un ADR propuesto no equivale a una decisión aprobada; crea el archivo cuando exista una decisión que valga la pena conservar.</p>
+    </section>
+
+    <section class="skill" id="code-review" aria-labelledby="code-review-title">
+      <span class="skill-number">Skill 4</span>
+      <h2 id="code-review-title">PR Code Review</h2>
+      <p><strong>Objetivo:</strong> analizar el diff frente al objetivo y al comportamiento esperado para identificar defectos, regresiones o riesgos con evidencia concreta.</p>
+
+      <p class="label">Prompt para crearlo</p>
+      <blockquote class="prompt">Crea un skill llamado “PR Code Review”. Sigue las convenciones del repositorio y usa el formato de reporte de abajo. Compara el diff con el objetivo, el plan aprobado y los criterios de aceptación. Revisa en pasadas separadas el comportamiento, los casos límite y las regresiones; la seguridad y privacidad; y el cumplimiento del plan, contratos y políticas del proyecto. Lee suficiente contexto de los archivos afectados. Reporta hallazgos accionables con área, prioridad, ubicación, evidencia, impacto y corrección o validación sugerida. No repitas hallazgos que CI ya cubre y limita las observaciones de estilo a las que tengan impacto real. Si no encuentra defectos, indícalo y resume el alcance revisado. Registra los checks observados sin afirmar resultados que no tengan evidencia. El skill produce hallazgos y recomendaciones: no modifica archivos, no publica comentarios ni aprueba o fusiona el PR. Al crear este skill, crea únicamente su archivo; no revises un PR real.</blockquote>
+
+      <p class="label">Plantilla de reporte de code review</p>
+      <pre><code># Code review del PR &lt;número o enlace&gt;
+
+## Contexto
+- Objetivo del PR:
+- Plan / issue y criterios relacionados:
+- Base y alcance revisado:
+
+## Hallazgos
+| Área | Prioridad | Archivo y línea | Hallazgo y evidencia | Impacto | Corrección o validación sugerida |
+|---|---|---|---|---|---|
+| Comportamiento / Seguridad / Plan y políticas | P1/P2/P3/P4 | `ruta:línea` | ... | ... | ... |
+
+## Cobertura revisada
+- Flujos, contratos y casos límite:
+- Pruebas y checks observados:
+- Cobertura o evidencia faltante:
+
+## Resumen
+- Hallazgos bloqueantes:
+- Preguntas abiertas:
+- Recomendación para la persona revisora:</code></pre>
+      <p class="note"><strong>Nota:</strong> adapta prioridades, alcance y reporte al riesgo y a las reglas de revisión del proyecto. El skill entrega hallazgos y recomendaciones; no modifica código ni publica comentarios.</p>
+    </section>
+
+    <section class="skill" id="comments" aria-labelledby="comments-title">
+      <span class="skill-number">Skill 5</span>
+      <h2 id="comments-title">PR Triage</h2>
+      <p><strong>Objetivo:</strong> atender comentarios de revisión e issues asociados al PR, distinguiendo correcciones, preguntas, preferencias y temas ya resueltos.</p>
+
+      <p class="label">Prompt para crearlo</p>
+      <blockquote class="prompt">Crea un skill llamado “PR Triage”. Usa las convenciones del repositorio y el formato de reporte de abajo. Consulta el contexto y evidencia relevante para cada comentario o issue; clasifica cada punto y propone una corrección o respuesta precisa. Antes de modificar código, presenta la corrección y espera autorización. Después de un cambio autorizado, prepara una respuesta por comentario con evidencia; publícala solo cuando el usuario lo solicite. No apruebes ni fusiones el PR. Al crear este skill, crea únicamente su archivo; no atiendas un PR real.</blockquote>
+
+      <p class="label">Plantilla de seguimiento de comentarios</p>
+      <pre><code># Comentarios e issues del PR &lt;número o enlace&gt;
+
+## Contexto
+- Objetivo del PR:
+- Plan / issue relacionado:
+- Alcance revisado:
+
+## Comentarios e issues
+| Referencia | Estado | Análisis y evidencia | Corrección o respuesta propuesta |
+|---|---|---|---|
+| Comentario o issue | Abierto / Resuelto / Pregunta | ... | ... |
+
+## Validaciones observadas
+- Checks aprobados:
+- Checks fallidos o pendientes:
+- Validaciones no ejecutadas:
+
+## Siguiente paso
+- Corrección que requiere autorización:
+- Respuestas listas para publicar:
+- Preguntas abiertas:</code></pre>
+      <p class="note"><strong>Nota:</strong> adapta el formato al flujo del equipo. Propón una corrección antes de aplicarla; publica las respuestas cuando el usuario lo solicite.</p>
+    </section>
+
+    <section class="skill" id="create-pr" aria-labelledby="create-pr-title">
+      <span class="skill-number">Skill 6</span>
+      <h2 id="create-pr-title">Create a PR</h2>
+      <p><strong>Objetivo:</strong> preparar un PR que explique el cambio, enlace el trabajo relacionado y muestre qué validaciones se ejecutaron.</p>
+
+      <p class="label">Prompt para crearlo</p>
+      <blockquote class="prompt">Crea un skill llamado “Create a PR”. Inspecciona la plantilla de PR, las convenciones de ramas, los checks requeridos y las instrucciones del repositorio. Usa la plantilla que aparece abajo solo si el repositorio no tiene otra acordada. Revisa el diff frente al plan aprobado y señala cualquier cambio de alcance o desviación que deba documentarse. El skill debe revisar el estado de Git, relacionar el PR con el plan, issue y ADR cuando correspondan, y resumir propósito, cambios, validaciones reales y riesgos. Debe distinguir validaciones aprobadas, fallidas, pendientes y no ejecutadas; nunca afirmar que una prueba pasó sin evidencia. Crea el PR solo cuando el usuario lo solicite y nunca lo fusiones. Al crear este skill, crea únicamente su archivo; no abras un PR real.</blockquote>
+
+      <p class="label">Plantilla de descripción del PR</p>
+      <pre><code>## Propósito
+¿Qué problema resuelve este cambio?
+
+## Cambios incluidos
+- ...
+
+## Referencias
+- Issue:
+- Plan aprobado:
+- ADR relacionado:
+
+## Validación
+- [ ] &lt;comando o check ejecutado&gt; — resultado:
+- [ ] &lt;prueba manual o evidencia, si aplica&gt;
+- No ejecutado / pendiente:
+
+## Riesgos e impacto
+- ...
+
+## Checklist del autor
+- [ ] El alcance corresponde al plan aprobado.
+- [ ] La documentación y los contratos afectados están actualizados.
+- [ ] Los checks reportados corresponden a ejecuciones reales.
+- [ ] No se incluyeron secretos ni datos sensibles.</code></pre>
+      <p class="note"><strong>Nota:</strong> adapta el título, campos y checklist a la plantilla del repositorio. Crear un PR no autoriza a fusionarlo.</p>
+    </section>
+
+    <section class="intro" aria-labelledby="markdown-title">
+      <h2 id="markdown-title">Cómo mantener la documentación útil</h2>
+      <ul>
+        <li>Mantén una fuente de verdad por artefacto y enlaza documentos relacionados.</li>
+        <li>Usa encabezados claros y enlaces relativos para facilitar la navegación en GitHub.</li>
+        <li>Crea documentos y plantillas cuando un flujo real los necesite; no por tener una carpeta vacía que llenar.</li>
+      </ul>
+      <p style="margin-top: 14px;">Las plantillas son puntos de partida. Cada equipo puede adaptar el contenido y el nivel de detalle según las necesidades y reglas de su proyecto.</p>
+    </section>
+
+    <section class="intro" aria-labelledby="reading-title">
+      <h2 id="reading-title">Lecturas de referencia</h2>
+      <ul>
+        <li><a class="source-link" href="https://claude.com/resources/articles/the-ai-native-sdlc-playbook">The AI-native SDLC playbook — Claude by Anthropic</a> — ideas sobre artefactos entre etapas, revisión frente al plan, prioridades de hallazgos y controles humanos.</li>
+        <li><a class="source-link" href="https://westmonroe-cloud.com/secure/static/ai-awesome/docs/build/lifecycle/readme">AI-Augmented → Software Development Lifecycle — By West Monroe</a> — Every phase of the SDLC can be enhanced with AI. This section provides guides and ready-to-use prompts for each phase.</li>
+      </ul>
+    </section>
+
+    <footer class="references">
+      <p><strong>Referencias consultadas:</strong></p>
+      <ul>
+        <li><a class="source-link" href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes">GitHub Docs: README y Markdown</a></li>
+        <li><a class="source-link" href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository">GitHub Docs: plantillas de pull request</a></li>
+      </ul>
+      <p><a href="skills-base-y-prompts.md">Abrir el documento de referencia en Markdown</a></p>
+    </footer>
+  </main>
+  <script>
+    document.querySelectorAll('.jump-menu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        document.querySelector('.jump-menu details').open = false;
+      });
+    });
+  </script>
+</body>
+</html>
