@@ -48,11 +48,15 @@ const english: Record<string, string> = {
   "Mi ruta": "My path",
   "Grupos y roles": "Teams and roles",
   "Proyectos (3)": "Projects (3)",
-  "Mejoras opcionales": "Optional extensions",
+  "Siguiente después del MVP": "Next after the MVP",
+  "Fuera del MVP de cuatro semanas": "Outside the four-week MVP",
   "Base de conocimiento": "Knowledge base",
+  "Demo: base de conocimiento": "Knowledge base demo",
+  "Guía de integración": "Integration walkthrough",
+  "EJEMPLO DE PROYECTO": "EXAMPLE PROJECT",
+  "Ejemplo de proyecto": "Example project",
   "Guías por rol": "Role guides",
   "Prompts opcionales": "Optional prompts",
-  "Integración del capstone": "Project walkthrough",
   "Navegación principal": "Main navigation",
   "Recursos opcionales": "Optional resources",
   "Módulos del programa": "Course modules",
@@ -100,20 +104,26 @@ const english: Record<string, string> = {
   "Empezar el programa →": "Start the program →",
   "PRIMEROS PASOS": "GETTING STARTED",
   "Empieza por aquí": "Start here",
+  "Este sitio es tu guía de aprendizaje.": "This site is your learning guide.",
+  "La app del equipo va en un repositorio Git separado. Abre ese repositorio en Codex o Claude; usa la demo de este sitio solo como referencia.":
+    "The team's app belongs in a separate Git repository. Open that repository in Codex or Claude; use this site's demo as a reference only.",
   "Organiza el equipo.": "Organize the team.",
-  "Repartan el trabajo entre pantallas, datos y servidor. Todo el equipo revisa que funcione.":
-    "Split the work across screens, data, and server. Everyone checks that it works.",
+  "Elijan un proyecto y asignen Producto, Web, API y Datos; QA se rota. Otra persona revisa cada cambio.":
+    "Choose a project and assign Product, Web, API, and Data; rotate QA. Someone else reviews each change.",
   "Crear grupo": "Create a team",
+  "Conoce el proyecto de ejemplo.": "Explore the example project.",
+  "La base de conocimiento es una demo funcional; la guía explica cómo se integra. Tu equipo puede elegir otro proyecto.":
+    "The knowledge base is a working demo; the guide explains how it fits together. Your team can choose a different project.",
+  "Abrir demo": "Open demo",
+  "Ver guía de integración": "View integration guide",
   "Lee el alcance.": "Read the project scope.",
-  "El capstone usa proyectos y notas de práctica, sin datos reales.":
-    "The project uses practice projects and notes, with no real data.",
   "Ver integración": "View walkthrough",
   "Sigue la secuencia.": "Follow the sequence.",
-  "Plan y contratos → datos/API → UI/IA → QA, revisión y demo.":
-    "Plan and contracts → data/API → UI/AI → QA, review, and demo.",
+  "Brief y contrato → base de datos y API → pantalla → QA, transferencia y demo.":
+    "Brief and contract → database and API → screen → QA, transfer, and demo.",
   "Abrir primer módulo": "Open first module",
-  "Los módulos estiman dos horas cada uno. La dedicación sugerida es de 2–8 horas semanales según la integración del equipo.":
-    "Each module takes about two hours. Suggested effort is 2–8 hours each week, depending on the team's schedule.",
+  "Los seis módulos suman unas 12 horas guiadas: 2 h en la semana 1, 4 h en las semanas 2 y 3, y 2 h en la semana 4. Si solo tienen 2 h por semana, acuerden extender el calendario; no salten las verificaciones.":
+    "The six modules take about 12 guided hours: 2 hours in week 1, 4 hours in weeks 2 and 3, and 2 hours in week 4. If you only have 2 hours each week, agree to extend the schedule; do not skip the checks.",
   "El avance se separa por el email de práctica que escribiste. El email no se verifica; no guardes información privada. Este piloto local no es una cuenta segura.":
     "Progress is separated by the practice email you entered. Email is not verified; do not save private information. This local pilot is not a secure account.",
   "Detalles del programa": "Program details",
@@ -129,13 +139,15 @@ const english: Record<string, string> = {
   "Progreso del curso": "Course progress",
   "TU RECORRIDO": "YOUR JOURNEY",
   "Cuatro semanas. Un proyecto en equipo.": "Four weeks. One team project.",
-  "Probar la base de conocimiento →": "Try the knowledge base →",
+  "Abrir demo de base de conocimiento →": "Open knowledge base demo →",
   "COMPLETADO ✓": "COMPLETE ✓",
   PENDIENTE: "NOT STARTED",
   "Abrir módulo →": "Open module →",
   "GUÍA DEL PROGRAMA · MARKDOWN": "PROGRAM GUIDE · MARKDOWN",
   "ENTREGA DE EQUIPO": "TEAM PROJECT",
   "Elijan un proyecto para su grupo.": "Choose a project for your team.",
+  "Primero completen el MVP de entrenamiento y su prueba de transferencia. Las funciones siguientes son una ruta posterior; no amplíen el alcance antes de pasar esos controles.":
+    "First complete the training MVP and its transfer test. The following features are a later roadmap; do not expand scope before passing those checks.",
   "Ver opciones →": "View options →",
   OPCIÓN: "OPTION",
   "4 SEMANAS": "4 WEEKS",
@@ -178,7 +190,7 @@ const english: Record<string, string> = {
   "OPCIÓN 0": "OPTION 0",
   "Persona:": "User:",
   "Propósito:": "Purpose:",
-  Alcance: "Scope",
+  "Alcance del MVP de entrenamiento": "Training MVP scope",
   "Criterios para la demo": "Demo criteria",
   "Fuera de alcance": "Out of scope",
   "Descargar brief completo ↘": "Download full project brief ↘",
@@ -240,10 +252,21 @@ const english: Record<string, string> = {
   Privacidad: "Privacy",
   "No pegues secretos, credenciales, datos personales ni información de clientes. Sigue la política de datos y las reglas del repositorio.":
     "Do not paste secrets, credentials, personal data, or customer information. Follow the data policy and repository rules.",
-  "CAPSTONE · DATOS SINTÉTICOS": "PROJECT · FICTIONAL DATA",
   "Agrega notas a un proyecto y pregunta. La respuesta se basa solo en sus notas y muestra referencias o indica que falta evidencia.":
     "Add notes to a project and ask a question. The answer uses only its notes and shows references or says when evidence is missing.",
   Proyecto: "Project",
+  "PROYECTO DE EJEMPLO · DATOS FICTICIOS": "EXAMPLE PROJECT · FICTIONAL DATA",
+  "GUÍA DE INTEGRACIÓN · PROYECTO DE EJEMPLO": "INTEGRATION GUIDE · EXAMPLE PROJECT",
+  "Relación entre la demo y la guía": "How the demo and guide connect",
+  "Relación entre la guía y la demo": "How the guide and demo connect",
+  "DEMO FUNCIONAL": "WORKING DEMO",
+  "GUÍA DEL EJEMPLO": "GUIDE TO THE EXAMPLE",
+  "Esta es la demo que describe la guía de integración. Usa notas ficticias; el proyecto de tu equipo puede ser distinto y no requiere IA.":
+    "This is the demo described in the integration guide. It uses fictional notes; your team can choose a different project, and its app does not need AI.",
+  "Ver cómo se integra →": "See how it fits together →",
+  "Este recorrido describe la demo de base de conocimiento. Ábrela para agregar notas ficticias y probar la misma consulta.":
+    "This walkthrough describes the knowledge base demo. Open it to add fictional notes and try the same question.",
+  "Abrir demo de conocimiento →": "Open knowledge base demo →",
   "Fuentes disponibles": "Available sources",
   "Este proyecto aún no tiene notas.": "This project does not have any notes yet.",
   "Agregar una nota": "Add a note",
@@ -259,7 +282,10 @@ const english: Record<string, string> = {
   "Respuesta · ": "Answer · ",
   "Cada consulta recupera notas solo del proyecto seleccionado. Usa contenido sintético; este entorno no implementa autenticación compartida.":
     "Each question retrieves notes only from the selected project. Use fictional content; this environment does not provide shared authentication.",
-  "CAPSTONE · RECORRIDO POR CAPAS": "PROJECT · FOLLOW THE LAYERS",
+  "Cómo se integra ": "How the ",
+  "la demo de base de conocimiento": "knowledge base demo fits together",
+  "Esta guía recorre la consulta de notas de la demo de base de conocimiento y muestra cómo se conectan la interfaz, el contrato, la API, SQLite y el tutor.":
+    "This guide follows a question through the knowledge base demo and shows how the interface, contract, API, SQLite, and tutor fit together.",
   "Una función, ": "One feature, ",
   "todo el equipo.": "the whole team.",
   "Sigue la misma consulta de notas desde la interfaz hasta las pruebas, con contratos aprobados como punto de coordinación.":

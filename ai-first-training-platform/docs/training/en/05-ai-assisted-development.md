@@ -23,7 +23,7 @@ Complete a small task with a coding assistant: provide context, ask for a plan, 
 4. **Implement one small part.** Ask it to change only the agreed files and update related Markdown if the change requires it.
 5. **Check the result.** Review the diff. Run relevant checks from the README, confirm visible behavior, and record only observed results.
 6. **Ask for an explanation.** Ask what changed, how the data flows, and what limits remain. Each person should be able to explain their own change.
-7. **Save and hand off.** Follow the team's Git workflow, request human review, and leave the documents ready for whoever continues the project.
+7. **Save and hand off.** Follow the team's Git workflow, request human review, and complete the pull request handoff: criterion, changed files/decisions, checks and observed results, limits, and next step.
 
 ## Files it can help create or maintain
 
@@ -46,7 +46,7 @@ Choose a real task from your role that helps complete insert and list for one re
 3. Share the plan with the team. Clarify the changes before approving them.
 4. Ask it to implement only that task and review the diff.
 5. Run the relevant checks and record what happened.
-6. Update related documents and present the change to another person for review.
+6. Update related documents and present the change to another person for review. Complete the change handoff in the pull request: purpose, decision, actual check results, limits, and next step.
 
 ## Starter prompt for Codex or Claude
 

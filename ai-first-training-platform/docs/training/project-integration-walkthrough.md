@@ -66,6 +66,46 @@ Si falta un campo requerido, la pantalla muestra un mensaje claro y la API no gu
 
 El ejemplo es un acuerdo, no una instrucción para crear una ruta nueva sin revisar las existentes. La IA debe localizar la ruta actual y explicar cómo se conectaría con este acuerdo.
 
+### Contrato de ejemplo que pueden adoptar
+
+Antes de dividir el trabajo, acuerden una sola forma de enviar y recibir un artículo. Este ejemplo es ficticio y sirve como punto de partida; el equipo puede cambiarlo antes de implementarlo.
+
+    GET /api/articles
+    Respuesta 200: []
+
+    POST /api/articles
+    Solicitud:
+    {
+      "title": "Guía de viajes",
+      "content": "Guía ficticia para preparar un viaje."
+    }
+
+    Respuesta 201:
+    {
+      "id": 1,
+      "title": "Guía de viajes",
+      "content": "Guía ficticia para preparar un viaje."
+    }
+
+    POST con title vacío o content faltante
+    Respuesta 400; el artículo no se guarda.
+
+El nombre de la ruta y la estructura de la respuesta son acuerdos del ejemplo, no una exigencia de Hono. Si el equipo los cambia, actualicen el contrato, la pantalla, la API y las pruebas en el mismo trabajo.
+
+**Punto de control API:** la lista empieza vacía; una solicitud válida devuelve el artículo guardado y la siguiente consulta lo incluye; una solicitud inválida devuelve un error claro y no agrega un artículo.
+
+### Del contrato a la pantalla
+
+| Acción de la persona | Resultado esperado |
+| --- | --- |
+| Abre la app cuando no hay artículos | La lista vacía explica que aún no hay artículos y permite agregar uno. |
+| Envía título y contenido válidos | Ve un mensaje de éxito y el artículo aparece una sola vez en la lista. |
+| Actualiza la página | El artículo sigue visible porque se guardó en SQLite. |
+| Envía el formulario con un campo vacío | Ve un mensaje que explica qué falta; la lista y la base de datos no reciben un artículo nuevo. |
+| La API no está disponible o responde con error | La página muestra un mensaje recuperable; no muestra una traza interna. |
+
+Conviertan estas acciones en casos de prueba antes de dividir la implementación. Para cada caso escriban primero el resultado esperado y, después de ejecutarlo, anoten el resultado observado. Una captura o un comentario de IA no reemplaza la salida real de la app o de las pruebas.
+
 ## Paso 5: asignar roles y dividir el trabajo
 
 Registren las personas responsables en `docs/team/assignments.md`. En un grupo de cuatro, asignen producto/coordinación, web, API y datos a una persona cada uno. En un grupo de tres, una persona coordina producto, otra web y la tercera API junto con datos. QA se comparte: una persona distinta coordina las pruebas cada semana. Quien implementa un cambio no lo revisa a solas.
@@ -90,6 +130,25 @@ Después de aprobar el contrato, web puede avanzar con el ejemplo mientras API y
 - Si queda tiempo después de verificar insertar y listar, agreguen editar o eliminar con criterios propios. No agreguen búsqueda ni funciones de IA a la app durante este entrenamiento.
 - Ejecuten únicamente los comandos que existen en el README y escriban el resultado que observaron.
 - Registren qué cambió, qué falta y cómo repetir la demo en `docs/delivery/handoff.md`.
+
+## Puntos de control: comprueben una capa antes de sumar la siguiente
+
+| Etapa | Resultado que deben observar | Si no ocurre |
+| --- | --- | --- |
+| Repo y reglas | Otra persona sigue README desde un clon limpio e inicia la estructura. El brief, AGENTS y README coinciden con el alcance y los comandos reales. | Pausen el desarrollo de funciones y corrijan el arranque o las instrucciones. |
+| Datos y API | La tabla y migración existen; insertar y listar cumplen el contrato; una entrada inválida no se guarda. | Comparen el esquema, la validación, la ruta y el contrato con una misma entrada de ejemplo. |
+| Pantalla | El formulario guarda el registro y la lista lo muestra; actualizar conserva el dato; los estados vacío, error y éxito se entienden. | Revisen la respuesta real de la API y el estado que muestra la página. |
+| Pull request | Otra persona puede explicar el cambio; CI pasa; la entrega incluye criterio, archivos, comandos/resultados, límites y siguiente paso. | No integren el cambio hasta tener revisión y resultados observados. |
+| Transferencia | Una persona ajena sigue README, prueba insertar/listar, encuentra el código y elige una tarea pendiente. | Anoten la pregunta que tuvo y mejoren el archivo donde faltó información. |
+
+Para cada cambio, usen este ciclo AI-first:
+
+    1. Contexto: indica el brief, las reglas, el contrato, tu rol y el criterio.
+    2. Plan: pide archivos, pasos, riesgos y verificaciones; no permitas cambios todavía.
+    3. Revisión: el equipo corrige o aprueba el plan.
+    4. Cambio: pide una sola tarea acotada y actualizaciones de documentación relacionadas.
+    5. Comprobación: ejecuta los comandos reales y anota su resultado; no aceptes resultados inventados.
+    6. Revisión humana y handoff: otra persona lee el diff; la PR registra propósito, decisión, resultados, límites y siguiente paso.
 
 ## Prueba de transferencia: ¿puede continuar otro equipo?
 

@@ -4,7 +4,7 @@
 
 Build a small app from scratch to record fictional support requests and view the saved requests. The team uses Codex or Claude as a coding assistant; the app itself does not need AI features.
 
-## Required scope
+## Required scope for the training MVP
 
 The first version includes only what is needed to insert and list records:
 
@@ -26,12 +26,20 @@ The first version includes only what is needed to insert and list records:
 
 Only after all required criteria are complete and reviewed, the team may add update and/or delete for requests. Each extension needs its own criteria and checks; it must not put the minimum flow at risk.
 
-## Out of scope
+## Out of scope for the four-week MVP
 
 - Filters, status changes, assignments, and priority rules.
 - Real customer tickets or data, and automatic AI responses.
 - Accounts, production permissions, and external integrations.
 - An AI feature inside the app.
+
+## Possible next project increments
+
+These features represent the broader support-triage workflow in the proposal. They are for after the course MVP, change review, and transfer test are complete; do not add them to the four-week demo.
+
+1. Prepare six fictional tickets for the inbox.
+2. Filter the list by status.
+3. Update a ticket's status and check that it persists.
 
 ## Stack and AI use
 

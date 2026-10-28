@@ -4,7 +4,7 @@
 
 Build a small app from scratch to record fictional appointments and view saved appointments. The team uses Codex or Claude as a coding assistant; the app itself does not need AI features.
 
-## Required scope
+## Required scope for the training MVP
 
 The first version includes only what is needed to insert and list records:
 
@@ -28,12 +28,20 @@ There is no need to check availability or prevent two appointments from using th
 
 Only after all required criteria are complete and reviewed, the team may add update and/or delete for appointments. Each extension needs its own criteria and checks; it must not put the minimum flow at risk.
 
-## Out of scope
+## Out of scope for the four-week MVP
 
 - Availability calendars, scheduling rules, or duplicate-booking prevention.
 - Cancellations, reminders, notifications, or external calendars.
 - Real customer data, payments, accounts, and external integrations.
 - An AI feature inside the app.
+
+## Possible next project increments
+
+These features represent the broader appointment workflow in the proposal. They are for after the course MVP, change review, and transfer test are complete; do not add them to the four-week demo.
+
+1. Record available time slots using fictional data.
+2. Prevent two appointments from using the same slot and explain the conflict.
+3. Cancel a fictional appointment and make the slot available again.
 
 ## Stack and AI use
 

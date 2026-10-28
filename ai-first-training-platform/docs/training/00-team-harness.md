@@ -4,6 +4,13 @@
 
 En este módulo el equipo elige una idea pequeña, ubica la carpeta principal del proyecto y aprende dónde va cada tipo de trabajo. Primero se ponen de acuerdo y conocen el mapa; después empiezan a programar.
 
+## Primero: distingue los dos repositorios
+
+- **Repositorio del curso:** este sitio. Aquí lees las lecciones, sigues tu progreso y consultas la demo. Sus comandos de inicio solo arrancan el sitio del curso.
+- **Repositorio del equipo:** una carpeta Git nueva y aprobada donde vive la app que construirán. Codex o Claude debe abrir este repositorio para proponer o cambiar sus archivos.
+
+La demo de Base de conocimiento enseña una integración terminada. No es el capstone de tu equipo ni una plantilla de código para copiar. El capstone empieza pequeño: una pantalla, un tipo de registro, una API y una tabla con datos inventados.
+
 ## Antes de empezar: palabras sencillas
 
 - Un **proyecto** es el trabajo que el equipo construye.
@@ -109,6 +116,12 @@ Después, abran una **pull request** en la plataforma del equipo. Expliquen qué
 
 Antes de empezar otra tarea, actualicen su rama principal con `git switch main` y `git pull`. No guarden claves, tokens ni datos reales en Git. No cambien directamente `main`, no usen comandos para forzar la subida y pidan ayuda si aparece un conflicto que no entienden. Si su organización usa otra forma de revisión, sigan su proceso y pidan que alguien se los explique.
 
+## Configuren calidad y revisión desde la primera semana
+
+El estándar del programa es que cada pull request ejecute automáticamente formato, lint, tipos, pruebas y build. Una persona revisa el diff y los criterios; la CI no reemplaza la revisión humana. La persona responsable del repositorio debe habilitar que la rama principal requiera pull request, CI exitosa y al menos una aprobación, además del escaneo de secretos que use la organización. Nunca guarden claves o tokens en Git. Si el equipo no tiene esos permisos, anote el bloqueo y pida al responsable del programa que lo configure.
+
+Cuando la estructura del proyecto y sus comandos reales estén listos, pidan al asistente un flujo de CI que ejecute esos mismos comandos. Comprueben el flujo con una pull request de práctica o un cambio pequeño y miren que se vea tanto un resultado exitoso como un fallo fácil de entender. No escriban una política de protección en documentos como si ya estuviera activa: confirmen la configuración en la plataforma.
+
 ## Dejen el proyecto listo para otra persona
 
 Otro equipo podría recibirlo sin conocer las conversaciones actuales. Para facilitarle el trabajo:
@@ -162,6 +175,20 @@ Para crear o actualizar un archivo:
 6. Asegúrense de que `README.md` y `AGENTS.md` queden en la raíz. Pidan ayuda para redactarlos y manténganlos actualizados con el código y los acuerdos del equipo.
 
 Los archivos creados en el repositorio del equipo se comparten con Git siguiendo el [flujo de la semana 1](#guardar-y-compartir-el-trabajo-con-git). No guarden los documentos de su proyecto dentro de `docs/training/`: esa carpeta contiene las lecciones del sitio.
+
+### Pidan a la IA que prepare la base, no toda la app
+
+Antes de pedir código, confirmen que tienen el brief, los criterios mínimos y acceso al asistente y al repositorio. El stack aprobado es React con TypeScript estricto y Vike; Bun con Hono; Drizzle con SQLite local; Zod para validar datos. No agreguen servicios, autenticación ni funciones de IA al producto de práctica.
+
+Primero pidan un plan sin cambios:
+
+> Estamos en el repositorio nuevo de nuestro equipo y construiremos el MVP del brief adjunto. Sigue el stack aprobado: React con TypeScript estricto y Vike para web; Bun con Hono para API; Drizzle con SQLite local; Zod para validar. Lee las instrucciones existentes. No edites todavía. Propón la estructura mínima, los archivos que crearías, qué hará cada uno y los comandos raíz para instalar, migrar, iniciar web y API, comprobar, probar y construir. Confirma que cada comando tendrá un script real en el manifiesto del proyecto. Indica qué requisitos o decisiones faltan. No implementes funciones del producto, no agregues dependencias innecesarias, autenticación, servicios externos ni IA dentro de la app. Espera la revisión del equipo.
+
+Después de revisar el plan, pidan que prepare solo la estructura:
+
+> Implementa solo la estructura aprobada. No agregues todavía la función del producto. Asegúrate de que README y AGENTS coincidan con la estructura y los comandos existentes. Ejecuta las comprobaciones de inicio que aprobamos y reporta cada comando con su resultado real. Si algo falla, detente y explica el error; no cambies el stack ni inventes otra solución sin aprobación.
+
+**Punto de control:** no empiecen las funciones del producto hasta que una segunda persona pueda seguir README desde un clon limpio, instalar las dependencias y arrancar la estructura. La lista de comandos de README debe coincidir con los scripts del proyecto; AGENTS debe apuntar a las mismas reglas y tecnologías. Si falla, anoten el error y resuelvan el arranque con el equipo.
 
 ## Archivos: qué va en cada uno
 

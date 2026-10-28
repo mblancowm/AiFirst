@@ -4,6 +4,13 @@
 
 In this module, the team chooses a small idea, finds the project root folder, and learns where each kind of work belongs. First agree on the plan and learn the map; then start coding.
 
+## First: distinguish the two repositories
+
+- **Course repository:** this site. Read lessons, track progress, and explore the demo here. Its startup commands only run the course site.
+- **Team repository:** a new, approved Git repository that holds the app you will build. Codex or Claude should open this repository to suggest or change its files.
+
+The knowledge base demo shows a finished integration. It is not your team's capstone or a code starter to copy. The capstone starts small: one screen, one record type, one API, and one table with fictional data.
+
 ## Before you start: simple terms
 
 - A **project** is the work the team builds.
@@ -109,6 +116,12 @@ Then open a **pull request** in the team's platform. Explain which criterion it 
 
 Before starting another task, update your main branch with `git switch main` and `git pull`. Do not save passwords, tokens, or real data in Git. Do not change `main` directly or use commands that force a push. Ask for help if a conflict appears and you do not understand it. If your organization uses a different review process, follow it and ask someone to explain it.
 
+## Set up quality and review in week one
+
+The program standard is for every pull request to automatically run format, lint, type, test, and build checks. A person reviews the diff and criteria; CI does not replace human review. The repository owner must require a pull request, successful CI, at least one approval, and the organization's secret scanning on the main branch. Never store keys or tokens in Git. If the team lacks those permissions, record the blocker and ask the program owner to configure it.
+
+After the project structure and its real commands are ready, ask the assistant for a CI workflow that runs those same commands. Check the workflow with a practice pull request or small change and observe both a successful result and an easy-to-understand failure. Do not write a branch-protection policy in project documents as if it is active: confirm the setting in the platform.
+
 ## Leave the project ready for someone else
 
 Another team may receive it without knowing the current conversations. Make it easier for them:
@@ -162,6 +175,20 @@ To create or update a file:
 6. Make sure `README.md` and `AGENTS.md` are in the root. Ask for help drafting them and keep them up to date with the code and team agreements.
 
 Files created in the team's repository are shared with Git using the [week 1 workflow](#save-and-share-the-work-with-git). Do not save your project documents under `docs/training/`: that folder contains the course site's lessons.
+
+### Ask AI to prepare the foundation, not the whole app
+
+Before asking for code, confirm you have the brief, minimum criteria, and access to the approved assistant and repository. The approved stack is React with strict TypeScript and Vike; Bun with Hono; Drizzle with local SQLite; and Zod for data validation. Do not add services, authentication, or AI features to the practice app.
+
+First ask for a plan without changes:
+
+> We are in our new team repository and will build the MVP in the attached brief. Follow the approved stack: React with strict TypeScript and Vike for web; Bun with Hono for the API; Drizzle with local SQLite; and Zod for validation. Read the existing instructions. Do not edit yet. Suggest the minimum structure, the files you would create, what each one does, and root commands to install, migrate, start web and API, check, test, and build. Confirm that each command will have a real script in the project manifest. List any missing requirements or decisions. Do not implement product features, add unnecessary dependencies, authentication, external services, or AI inside the app. Wait for the team to review.
+
+After reviewing the plan, ask it to prepare only the structure:
+
+> Implement only the approved structure. Do not add the product feature yet. Make sure README and AGENTS match the actual structure and commands. Run the startup checks we approved and report each command with its actual result. If anything fails, stop and explain the error; do not change the stack or invent another solution without approval.
+
+**Checkpoint:** do not start product features until a second person can follow README from a clean clone, install dependencies, and start the structure. README commands must match the project scripts; AGENTS must refer to the same rules and technologies. If the check fails, record the error and resolve startup with the team.
 
 ## Files: what belongs in each one
 

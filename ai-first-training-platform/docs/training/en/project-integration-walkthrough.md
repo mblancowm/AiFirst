@@ -66,6 +66,46 @@ If a required field is missing, the screen displays a clear message and the API 
 
 The example is an agreement, not an instruction to create a new route without checking what already exists. The AI should locate the current route and explain how it would connect to this agreement.
 
+### Worked contract the team can adopt
+
+Before splitting the work, agree on one way to send and receive an article. This fictional example is a starting point; the team can change it before implementation.
+
+    GET /api/articles
+    Response 200: []
+
+    POST /api/articles
+    Request:
+    {
+      "title": "Travel guide",
+      "content": "A fictional guide for preparing a trip."
+    }
+
+    Response 201:
+    {
+      "id": 1,
+      "title": "Travel guide",
+      "content": "A fictional guide for preparing a trip."
+    }
+
+    POST with an empty title or missing content
+    Response 400; the article is not saved.
+
+The route name and response shape are example agreements, not Hono requirements. If the team changes them, update the contract, screen, API, and checks together.
+
+**API checkpoint:** the list starts empty; a valid request returns the saved article and the next list request includes it; an invalid request returns a clear error and does not add an article.
+
+### Turn the contract into screen checks
+
+| Person's action | Expected result |
+| --- | --- |
+| Opens the app when there are no articles | The empty list explains that there are no articles yet and lets the person add one. |
+| Submits a valid title and content | Sees a success message and the article appears once in the list. |
+| Refreshes the page | The article remains because it was saved in SQLite. |
+| Submits the form with an empty field | Sees a message explaining what is missing; the list and database do not receive a new article. |
+| The API is unavailable or returns an error | The page shows a recoverable message without exposing an internal trace. |
+
+Turn these actions into test cases before splitting implementation. Write the expected result first; after running the check, record what actually happened. A screenshot or AI comment does not replace the real app or test output.
+
 ## Step 5: assign roles and divide the work
 
 Record the owners in `docs/team/assignments.md`. In a team of four, assign product/coordination, web, API, and data to one person each. In a team of three, one person coordinates product, one web, and the third API and data. QA is shared: a different person coordinates testing each week. The person implementing a change does not review it alone.
@@ -90,6 +130,25 @@ After the contract is approved, web can proceed with the example while API and d
 - If there is time after insert and list are verified, add update or delete with their own criteria. Do not add search or AI features to the app during this training.
 - Run only commands that exist in the README and write down the result you observed.
 - Record what changed, what is missing, and how to repeat the demo in `docs/delivery/handoff.md`.
+
+## Checkpoints: check each layer before adding the next
+
+| Stage | Result to observe | If it does not happen |
+| --- | --- | --- |
+| Repository and rules | Someone follows README from a clean clone and starts the structure. The brief, AGENTS, and README agree on scope and actual commands. | Pause feature work and fix startup or instructions. |
+| Data and API | The table and migration exist; insert and list follow the contract; invalid input is not saved. | Compare the schema, validation, route, and contract using the same sample input. |
+| Screen | The form saves a record and the list shows it; refresh preserves it; empty, error, and success states are clear. | Check the actual API response and the state displayed by the page. |
+| Pull request | Another person can explain the change; CI passes; the handoff includes criteria, files, commands/results, limits, and next step. | Do not merge until review and observed results are recorded. |
+| Transfer | Someone outside the team follows README, checks insert/list, finds the code, and chooses a pending task. | Record their question and improve the file that lacked the information. |
+
+Use this AI-first cycle for each change:
+
+    1. Context: provide the brief, rules, contract, your role, and the criterion.
+    2. Plan: ask for files, steps, risks, and checks; do not allow edits yet.
+    3. Review: the team corrects or approves the plan.
+    4. Change: ask for one bounded task and related documentation updates.
+    5. Check: run the real commands and record results; do not accept invented results.
+    6. Human review and handoff: another person reads the diff; the PR records purpose, decision, results, limits, and next step.
 
 ## Transfer test: can another team continue?
 

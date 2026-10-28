@@ -23,7 +23,7 @@ Completar una tarea pequeña con un asistente de programación: dar contexto, pe
 4. **Implementa una parte pequeña.** Pide que cambie solo los archivos acordados y actualice el Markdown relacionado si el cambio lo requiere.
 5. **Comprueba el resultado.** Revisa el diff. Ejecuta las comprobaciones del README que correspondan, confirma el comportamiento visible y registra solo resultados observados.
 6. **Pide una explicación.** Solicita que explique qué cambió, cómo viajan los datos y qué limitaciones tiene. Cada integrante debe poder explicar su propio cambio.
-7. **Guarda y entrega.** Sigue el flujo Git del equipo, solicita revisión humana y deja los documentos listos para quien continúe el proyecto.
+7. **Guarda y entrega.** Sigue el flujo Git del equipo, solicita revisión humana y completa el handoff de la pull request: criterio, archivos/decisiones, comprobaciones y resultados observados, límites y siguiente paso.
 
 ## Qué archivos puede ayudar a crear o mantener
 
@@ -46,7 +46,7 @@ Elige una tarea real de tu rol que ayude a completar insertar y listar un regist
 3. Comparte el plan con el equipo. Aclara los cambios antes de dar luz verde.
 4. Pide que implemente solo esa tarea y revise el diff.
 5. Ejecuta las comprobaciones pertinentes y anota qué ocurrió.
-6. Actualiza los documentos relacionados y presenta el cambio a otra persona para revisión.
+6. Actualiza los documentos relacionados y presenta el cambio a otra persona para revisión. Completa en la pull request el handoff del cambio: propósito, decisión, resultado real de las comprobaciones, límites y siguiente paso.
 
 ## Prompt inicial para Codex o Claude
 

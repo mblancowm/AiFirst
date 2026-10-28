@@ -4,7 +4,7 @@
 
 Crear desde cero una app pequeña para guardar artículos ficticios y consultar los artículos guardados. El equipo construye la aplicación usando Codex o Claude como asistente; la app no necesita funciones de IA.
 
-## Alcance obligatorio
+## Alcance obligatorio del MVP de entrenamiento
 
 La primera versión incluye solo lo necesario para insertar y listar:
 
@@ -26,12 +26,20 @@ La primera versión incluye solo lo necesario para insertar y listar:
 
 Solo después de completar y revisar todos los criterios obligatorios, el equipo puede agregar editar y/o eliminar artículos. Cada mejora debe tener criterios propios y pruebas; no debe poner en riesgo el flujo mínimo.
 
-## Fuera de alcance
+## Fuera de alcance del MVP de cuatro semanas
 
 - Búsqueda, filtros, categorías y carga de archivos.
 - Documentos internos reales, respuestas generadas por IA y búsqueda externa.
 - Cuentas, permisos de producción e integraciones externas.
 - Una función de IA dentro de la app.
+
+## Posibles siguientes incrementos del proyecto
+
+Estas funciones corresponden al flujo más amplio de base de conocimiento de la propuesta. Son tareas para después de aprobar el MVP del curso, la revisión de los cambios y la prueba de transferencia; no las agreguen para la demo de cuatro semanas.
+
+1. Buscar artículos ficticios por texto y categoría.
+2. Mostrar la fuente ficticia de cada artículo.
+3. Editar artículos y comprobar que los cambios persisten.
 
 ## Stack y uso de IA
 

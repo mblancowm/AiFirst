@@ -5,7 +5,13 @@ import { api } from "./api";
 import { MarkdownDocument } from "./MarkdownDocument";
 import { tx } from "./ui-copy";
 
-export function KnowledgeBasePage({ language }: { language: CourseLanguage }) {
+export function KnowledgeBasePage({
+  language,
+  openWalkthrough,
+}: {
+  language: CourseLanguage;
+  openWalkthrough: () => void;
+}) {
   const queryClient = useQueryClient();
   const projectsQuery = useQuery({
     queryKey: ["knowledge-projects", language],
@@ -80,7 +86,7 @@ export function KnowledgeBasePage({ language }: { language: CourseLanguage }) {
     );
   return (
     <>
-      <p className="eyebrow">{tx(language, "CAPSTONE · DATOS SINTÉTICOS")}</p>
+      <p className="eyebrow">{tx(language, "PROYECTO DE EJEMPLO · DATOS FICTICIOS")}</p>
       <h1>
         {tx(language, "Base interna ")}
         <span>{tx(language, "de conocimiento.")}</span>
@@ -91,6 +97,20 @@ export function KnowledgeBasePage({ language }: { language: CourseLanguage }) {
           "Agrega notas a un proyecto y pregunta. La respuesta se basa solo en sus notas y muestra referencias o indica que falta evidencia.",
         )}
       </p>
+      <section className="capstone-context" aria-label={tx(language, "Relación entre la demo y la guía")}>
+        <div>
+          <p className="eyebrow">{tx(language, "DEMO FUNCIONAL")}</p>
+          <p>
+            {tx(
+              language,
+              "Esta es la demo que describe la guía de integración. Usa notas ficticias; el proyecto de tu equipo puede ser distinto y no requiere IA.",
+            )}
+          </p>
+        </div>
+        <button className="button light" type="button" onClick={openWalkthrough}>
+          {tx(language, "Ver cómo se integra →")}
+        </button>
+      </section>
       <label className="role-select" htmlFor="knowledge-project">
         <span>{tx(language, "Proyecto")}</span>
         <select
@@ -215,10 +235,12 @@ export function KnowledgeBasePage({ language }: { language: CourseLanguage }) {
 }
 
 export function WalkthroughPage({
+  openKnowledge,
   modules,
   openLesson,
   language,
 }: {
+  openKnowledge: () => void;
   modules: CourseModule[];
   openLesson: (module: CourseModule) => void;
   language: CourseLanguage;
@@ -229,17 +251,31 @@ export function WalkthroughPage({
   });
   return (
     <>
-      <p className="eyebrow">{tx(language, "CAPSTONE · RECORRIDO POR CAPAS")}</p>
+      <p className="eyebrow">{tx(language, "GUÍA DE INTEGRACIÓN · PROYECTO DE EJEMPLO")}</p>
       <h1>
-        {tx(language, "Una función, ")}
-        <span>{tx(language, "todo el equipo.")}</span>
+        {tx(language, "Cómo se integra ")}
+        <span>{tx(language, "la demo de base de conocimiento")}</span>
       </h1>
       <p className="muted">
         {tx(
           language,
-          "Sigue la misma consulta de notas desde la interfaz hasta las pruebas, con contratos aprobados como punto de coordinación.",
+          "Esta guía recorre la consulta de notas de la demo de base de conocimiento y muestra cómo se conectan la interfaz, el contrato, la API, SQLite y el tutor.",
         )}
       </p>
+      <section className="capstone-context" aria-label={tx(language, "Relación entre la guía y la demo")}>
+        <div>
+          <p className="eyebrow">{tx(language, "GUÍA DEL EJEMPLO")}</p>
+          <p>
+            {tx(
+              language,
+              "Este recorrido describe la demo de base de conocimiento. Ábrela para agregar notas ficticias y probar la misma consulta.",
+            )}
+          </p>
+        </div>
+        <button className="button light" type="button" onClick={openKnowledge}>
+          {tx(language, "Abrir demo de base de conocimiento →")}
+        </button>
+      </section>
       {walkthrough.isLoading && (
         <div className="panel" role="status">
           {tx(language, "Cargando recorrido…")}

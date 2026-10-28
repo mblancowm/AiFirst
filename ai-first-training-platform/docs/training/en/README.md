@@ -6,6 +6,20 @@ This is a self-guided course for beginner to intermediate learners, with no requ
 
 The course takes four weeks for teams of 3–4 people, with 2–8 hours of work per person each week. Each team chooses one project idea and builds it throughout the course. Use fictional data.
 
+## How to use this site
+
+This site is the **training material**: it contains lessons, project briefs, and a reference demo. The team's application belongs in a **separate Git repository**, created and shared on the organization's approved platform. Open that repository in Codex or Claude when asking for help with files. Do not build the capstone in the course site's repository.
+
+Follow this order:
+
+1. Read this guide and module 00.
+2. Form the team, choose a brief, and assign owners and reviewers.
+3. Create or clone the team's repository. Set up README.md and AGENTS.md before implementing features.
+4. Work through the modules in order. Use the demo and integration walkthrough as references; the demo is not the team's starter code.
+5. Finish with a transfer review: someone who did not build the change follows the README and completes a small task.
+
+Before starting, the team needs access to the approved coding assistant, Git platform, and private repository; each participant needs Bun, Git, and a compatible editor. Use the Bun version listed in the [site's main README](../../README.md) (currently 1.4.4). The program owner should provide the policies and tool installation guidance. To start **this site**, follow its local commands in that README.
+
 ## What you will build
 
 The minimum deliverable is a web app the team builds from scratch in a new repository. It must let someone **insert** (create/save) records and **list** (view) the saved records on screen, using practice data stored in a database. To finish in four weeks, choose one type of record, a few fields, and one screen. **Updating and deleting are optional improvements.** Each participant completes and explains at least one AI-assisted change; the team delivers a demonstrable app and documentation another person can use to run and continue it.
@@ -17,6 +31,8 @@ The minimum deliverable is a web app the team builds from scratch in a new repos
 | **Support inbox** | Insert fictional tickets and list them. |
 
 The [knowledge base walkthrough](project-integration-walkthrough.md) is one example. Each team builds its application from scratch and can choose another proposal. Finish inserting and listing first; add updating or deleting only if there is time. Do not connect real systems or use customer documents, tickets, or data.
+
+The briefs also describe possible later features, such as search, filters, or appointment rules. This course teaches and assesses the minimum insert-and-list workflow first. Put larger features in the follow-on backlog unless the program owner agrees to a different scope and provides more time.
 
 ## If this is your first application
 
@@ -74,6 +90,8 @@ If you see a new term, ask the assistant to explain it in one sentence and point
 
 ## Four-week path
 
+The six modules estimate **about 12 guided hours**: 2 hours in week 1, 4 in week 2, 4 in week 3, and 2 in week 4. That time includes team exercises; reserve enough additional time to integrate and review the code. If the team only has 2 hours each week, agree with the program owner to extend the schedule rather than skip checks.
+
 | Week | Module | Team work | Files and evidence |
 | --- | --- | --- | --- |
 | 1 · Choose and set up | [00 · Project folders and setup](00-team-harness.md) | Choose a proposal, assign roles, create a new repository, and build the project structure from scratch with Codex or Claude. | `README.md`, `AGENTS.md`, brief, insert/list criteria, map, first task, and first branch. |
@@ -81,6 +99,22 @@ If you see a new term, ask the assistant to explain it in one sentence and point
 | 3 · Build the screen | [01 · Screen](01-ui.md) | Create the insert form and show the list connected to the API. | Simple page, form, list, messages, and screen tests. |
 | 3 · Develop with AI | [05 · Work with Codex or Claude](05-ai-assisted-development.md) | Practice a complete assistant workflow: context, plan, small change, verification, review, and explanation. | One code or Markdown change per person, with a reviewed diff and observed evidence. |
 | 4 · Review and deliver | [04 · QA and delivery](04-qa.md) | Check that insert and list work end to end, review pull requests, and prepare a demo another team can repeat. Update/delete are optional. | Tested minimum features, updated README, reviewed pull request, handoff, and transfer test. |
+
+## When the team is ready
+
+At the end, the team should be able to show evidence that:
+
+- The app starts from a clean clone and meets its main criteria using fictional data.
+- README and AGENTS explain how to start, how the project is organized, and which limits the assistant must follow.
+- Contracts, decisions, tasks, and checks are written in the repository and updated with changes.
+- Each pull request leaves a short handoff: purpose, decision, checks run and actual results, open limits, and next step.
+- Approved CI and secret scanning pass, and someone else reviewed the change. The repository owner confirms that the main branch requires a pull request, CI, and review.
+- Someone outside the team clones the repository, starts it, completes a small task, and explains what they checked without oral instructions.
+- The team leaves reusable rules and a template for the next group. Remove practice data, secrets, and project-specific decisions before sharing it.
+- Team members can explain how their area connects to the screen, API, and data.
+- The group, project, and members with their roles appear in Teams and roles. In this pilot the list lives on one local instance; it is not shared across remote teams.
+
+Branch protection and access to an organization template may depend on management. If the team lacks permission, record the blocker and the person who needs to resolve it; do not report the criterion as complete.
 
 ## How to build the app and its documents with Codex or Claude
 

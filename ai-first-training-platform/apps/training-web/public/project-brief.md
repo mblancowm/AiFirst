@@ -4,7 +4,7 @@
 
 Crear desde cero una app pequeña para registrar solicitudes ficticias de soporte y consultar las solicitudes guardadas. El equipo construye la aplicación usando Codex o Claude como asistente; la app no necesita funciones de IA.
 
-## Alcance obligatorio
+## Alcance obligatorio del MVP de entrenamiento
 
 La primera versión incluye solo lo necesario para insertar y listar:
 
@@ -26,12 +26,20 @@ La primera versión incluye solo lo necesario para insertar y listar:
 
 Solo después de completar y revisar todos los criterios obligatorios, el equipo puede agregar editar y/o eliminar solicitudes. Cada mejora debe tener criterios propios y pruebas; no debe poner en riesgo el flujo mínimo.
 
-## Fuera de alcance
+## Fuera de alcance del MVP de cuatro semanas
 
 - Filtros, cambios de estado, asignaciones y reglas de prioridad.
 - Tickets o información real de clientes y respuestas automáticas de IA.
 - Cuentas, permisos de producción e integraciones externas.
 - Una función de IA dentro de la app.
+
+## Posibles siguientes incrementos del proyecto
+
+Estas funciones corresponden al flujo más amplio de triage de soporte de la propuesta. Son tareas para después de aprobar el MVP del curso, la revisión de los cambios y la prueba de transferencia; no las agreguen para la demo de cuatro semanas.
+
+1. Preparar seis tickets ficticios para la bandeja.
+2. Filtrar la lista por estado.
+3. Actualizar el estado de un ticket y comprobar que persiste.
 
 ## Stack y uso de IA
 

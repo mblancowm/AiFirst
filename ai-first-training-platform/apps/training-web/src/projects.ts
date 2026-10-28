@@ -40,7 +40,8 @@ export const projects: TrainingProject[] = [
       "Otra persona del equipo puede iniciar la app y demostrar el flujo siguiendo el README.",
     ],
     optionalExtensions: [
-      "Después de completar y revisar el mínimo, agregar edición o eliminación de una cita si queda tiempo.",
+      "Después de aprobar el MVP y la prueba de transferencia: registrar horarios disponibles ficticios.",
+      "Luego, impedir dos citas para el mismo horario y permitir cancelar una cita para liberar el horario.",
     ],
     exclusions: [
       "Calendario de disponibilidad, reglas de horario y prevención de reservas duplicadas",
@@ -74,7 +75,8 @@ export const projects: TrainingProject[] = [
       "Otra persona del equipo puede iniciar la app y demostrar el flujo siguiendo el README.",
     ],
     optionalExtensions: [
-      "Después de completar y revisar el mínimo, agregar edición o eliminación de un artículo si queda tiempo.",
+      "Después de aprobar el MVP y la prueba de transferencia: buscar artículos ficticios por texto y categoría.",
+      "Luego, mostrar la fuente ficticia de cada artículo y permitir editarlo.",
     ],
     exclusions: [
       "Búsqueda, filtros, categorías y carga de archivos",
@@ -108,7 +110,8 @@ export const projects: TrainingProject[] = [
       "Otra persona del equipo puede iniciar la app y demostrar el flujo siguiendo el README.",
     ],
     optionalExtensions: [
-      "Después de completar y revisar el mínimo, agregar edición o eliminación de una solicitud si queda tiempo.",
+      "Después de aprobar el MVP y la prueba de transferencia: preparar seis tickets ficticios y filtrarlos por estado.",
+      "Luego, permitir actualizar el estado de un ticket y comprobar que persiste.",
     ],
     exclusions: [
       "Filtros, flujo de estados, asignación y reglas de prioridad",
@@ -127,7 +130,7 @@ export const projectEnglish: Record<
   Omit<TrainingProject, "code" | "brief" | "downloadName" | "briefEn" | "downloadNameEn">
 > = {
   "agenda-citas": {
-    title: "Appointment list",
+    title: "Appointment scheduler",
     shortTitle: "Create and list fictional appointments",
     summary: "Save practice appointments and view the ones already recorded.",
     user: "A receptionist who needs a simple list of appointments.",
@@ -147,7 +150,8 @@ export const projectEnglish: Record<
       "Another teammate can start the app and demo the flow by following the README.",
     ],
     optionalExtensions: [
-      "After completing and reviewing the minimum, add update or delete for an appointment if there is time.",
+      "After the MVP and transfer test pass: record fictional available time slots.",
+      "Then prevent two appointments from using the same slot and allow an appointment to be canceled to release the slot.",
     ],
     exclusions: [
       "Availability calendars, scheduling rules, and duplicate-booking prevention",
@@ -176,7 +180,8 @@ export const projectEnglish: Record<
       "Another teammate can start the app and demo the flow by following the README.",
     ],
     optionalExtensions: [
-      "After completing and reviewing the minimum, add update or delete for an article if there is time.",
+      "After the MVP and transfer test pass: search fictional articles by text and category.",
+      "Then show each article's fictional source and allow it to be edited.",
     ],
     exclusions: [
       "Search, filters, categories, and file uploads",
@@ -205,7 +210,8 @@ export const projectEnglish: Record<
       "Another teammate can start the app and demo the flow by following the README.",
     ],
     optionalExtensions: [
-      "After completing and reviewing the minimum, add update or delete for a request if there is time.",
+      "After the MVP and transfer test pass: prepare six fictional tickets and filter them by status.",
+      "Then allow a ticket's status to be updated and confirm that the change persists.",
     ],
     exclusions: [
       "Filters, status workflows, assignment, and priority rules",

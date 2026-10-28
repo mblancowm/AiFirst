@@ -6,6 +6,20 @@ Es un curso autoguiado de nivel principiante a intermedio, sin instructor ni ses
 
 Son cuatro semanas para equipos de 3–4 personas, con 2–8 horas de trabajo por persona cada semana. Cada equipo elige una propuesta y desarrolla la misma durante el curso. Usen datos inventados.
 
+## Cómo usar este sitio
+
+Este sitio es el **material de entrenamiento**: contiene lecciones, briefs y una demo de referencia. La aplicación del equipo vive en **otro repositorio Git**, creado y compartido en la plataforma aprobada por la organización. Abran ese repositorio en Codex o Claude cuando pidan ayuda para cambiar archivos. No construyan el capstone dentro del repositorio del sitio.
+
+Sigan este orden:
+
+1. Lean esta guía y el módulo 00.
+2. Formen el grupo, elijan un brief y asignen responsables y revisores.
+3. Creen o clonen el repositorio del equipo. Configuren allí README.md y AGENTS.md antes de implementar funciones.
+4. Trabajen los módulos en orden. Usen la demo y el recorrido de integración como material de consulta; la demo no es el código inicial del equipo.
+5. Cierren con una revisión de transferencia: alguien que no construyó el cambio sigue README y completa una tarea pequeña.
+
+Antes de empezar, el equipo necesita acceso al asistente aprobado, a la plataforma de Git y al repositorio privado; cada participante necesita Bun, Git y un editor compatible. Usen la versión de Bun indicada en el [README principal del sitio](../../README.md) (actualmente 1.4.4). El responsable del programa debe indicar las políticas y cómo instalar las herramientas. Para iniciar **este sitio**, sigan sus comandos locales en ese README.
+
 ## Qué construirán
 
 El entregable mínimo es una app web que el grupo crea desde cero en un repositorio nuevo. Debe permitir **insertar** registros (crear/guardar) y **listarlos** (consultarlos) desde la pantalla, usando datos de práctica guardados en la base de datos. Para que quepa en cuatro semanas, elijan un solo tipo de registro, pocos campos y una pantalla. **Editar y eliminar son mejoras opcionales.** Cada participante completa y explica al menos un cambio asistido por IA; el equipo entrega una app demostrable y documentación que permita a otra persona ejecutarla y continuarla.
@@ -17,6 +31,8 @@ El entregable mínimo es una app web que el grupo crea desde cero en un reposito
 | **Bandeja de soporte** | Insertar tickets inventados y listarlos. |
 
 El [recorrido de Base de conocimiento](project-integration-walkthrough.md) es un ejemplo. Cada equipo crea su aplicación desde cero y puede elegir otra de las propuestas. Primero terminen insertar y listar; agreguen editar o eliminar solo si queda tiempo. No conecten sistemas reales ni usen documentos, tickets o datos de clientes.
+
+Los briefs también describen posibles funciones posteriores, como búsqueda, filtros o reglas de citas. Este curso enseña y evalúa primero el flujo mínimo de insertar y listar. Registren las funciones mayores como trabajo posterior, salvo que el responsable del programa acuerde más tiempo y un alcance distinto para el grupo.
 
 ## Si es tu primera aplicación
 
@@ -75,6 +91,8 @@ Si aparece una palabra nueva, pídanle al asistente que la explique en una frase
 
 ## Ruta de cuatro semanas
 
+Los seis módulos estiman unas **12 horas guiadas**: 2 horas en la semana 1, 4 horas en la semana 2, 4 horas en la semana 3 y 2 horas en la semana 4. Ese tiempo incluye ejercicios de equipo; reserven además tiempo suficiente para integrar y revisar el código. Si el grupo solo dispone de 2 horas cada semana, acuerden extender el calendario con el responsable del programa en lugar de saltarse verificaciones.
+
 | Semana | Módulo | Trabajo del equipo | Archivos y evidencia |
 | --- | --- | --- | --- |
 | 1 · Elegir y preparar | [00 · Carpetas y preparación del proyecto](00-team-harness.md) | Elegir una propuesta, asignar roles, crear un repositorio nuevo y preparar la estructura desde cero con Codex o Claude. | README.md, AGENTS.md, resumen, criterios para insertar/listar, mapa, primera tarea y primera rama. |
@@ -82,6 +100,22 @@ Si aparece una palabra nueva, pídanle al asistente que la explique en una frase
 | 3 · Construir la pantalla | [01 · Pantalla](01-ui.md) | Crear el formulario para insertar y mostrar la lista conectada a la API. | Página sencilla, formulario, lista, mensajes y pruebas de pantalla. |
 | 3 · Desarrollar con IA | [05 · Trabajar con Codex o Claude](05-ai-assisted-development.md) | Practicar un ciclo completo con el asistente: contexto, plan, cambio pequeño, verificación, revisión y explicación. | Un cambio de código o Markdown por persona, con diff revisado y evidencia observada. |
 | 4 · Revisar y entregar | [04 · QA y entrega](04-qa.md) | Comprobar que insertar y listar funciona de principio a fin, revisar pull requests y preparar una demo que otro equipo pueda repetir. Editar/eliminar son opcionales. | Funciones mínimas probadas, README actualizado, pull request revisada, handoff y prueba de transferencia. |
+
+## Cuándo está listo el equipo
+
+Al finalizar, el grupo debe poder mostrar evidencia de que:
+
+- La app inicia desde un clon limpio y cumple sus criterios principales con datos inventados.
+- README y AGENTS explican cómo empezar, cómo está organizado el proyecto y qué límites debe respetar el asistente.
+- Los contratos, decisiones, tareas y verificaciones están escritos en el repositorio y actualizados con los cambios.
+- Cada pull request deja un handoff breve: propósito, decisión, comprobaciones ejecutadas y resultados reales, límites pendientes y siguiente paso.
+- CI y el escaneo de secretos aprobados pasan, y otra persona revisó el cambio. La persona responsable del repositorio confirma que la rama principal requiere pull request, CI y revisión.
+- Una persona ajena al equipo clona el repositorio, lo ejecuta, completa una tarea pequeña y explica qué comprobó sin recibir instrucciones orales.
+- El equipo deja reglas y una plantilla reutilizable para el siguiente grupo. Quiten datos de práctica, secretos y decisiones específicas antes de compartirla.
+- Los integrantes pueden explicar cómo su área se conecta con la pantalla, la API y los datos.
+- El grupo, el proyecto y los integrantes con sus roles aparecen en la sección Grupos y roles. En este piloto la lista vive en una instancia local; no es un roster compartido entre equipos remotos.
+
+La configuración de ramas protegidas y el acceso a una plantilla organizacional pueden depender de management. Si el equipo no tiene permisos, registre el bloqueo y a la persona que debe resolverlo; no reporte el criterio como completado.
 
 ## Cómo desarrollar la app y sus documentos con Codex o Claude
 

@@ -21,4 +21,4 @@ seedCourse();
 const app = createApp({ database: db });
 const port = runtimeConfig.PORT;
 console.log(`API AI-first lista en http://127.0.0.1:${port} (SQLite local: ${dbFile}; tutor: mock unless configured)`);
-export default { port, fetch: app.fetch };
+export default { hostname: "127.0.0.1", port, fetch: app.fetch };

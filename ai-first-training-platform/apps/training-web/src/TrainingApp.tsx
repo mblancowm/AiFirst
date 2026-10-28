@@ -29,13 +29,16 @@ const navItems: { key: Page; label: string; icon: string }[] = [
   { key: "home", label: "Mi ruta", icon: "⌂" },
   { key: "groups", label: "Grupos y roles", icon: "♧" },
   { key: "projects", label: "Proyectos (3)", icon: "▣" },
-  { key: "knowledge", label: "Base de conocimiento", icon: "⌕" },
+];
+
+const capstoneNavItems: { key: Page; label: string; icon: string }[] = [
+  { key: "knowledge", label: "Demo: base de conocimiento", icon: "⌕" },
+  { key: "walkthrough", label: "Guía de integración", icon: "↗" },
 ];
 
 const resourceNavItems: { key: Page; label: string; icon: string }[] = [
   { key: "skills", label: "Guías por rol", icon: "◇" },
   { key: "prompts", label: "Prompts opcionales", icon: "✳" },
-  { key: "walkthrough", label: "Integración del capstone", icon: "↗" },
 ];
 
 export function TrainingApp() {
@@ -363,6 +366,21 @@ function TrainingWorkspace() {
             </button>
           ))}
         </nav>
+        <div className="nav-label capstone-nav-label">{tx(language, "EJEMPLO DE PROYECTO")}</div>
+        <nav className="side-nav" aria-label={tx(language, "Ejemplo de proyecto")}>
+          {capstoneNavItems.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className={page === item.key ? "active" : ""}
+              aria-current={page === item.key ? "page" : undefined}
+              onClick={() => choosePage(item.key)}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              {tx(language, item.label)}
+            </button>
+          ))}
+        </nav>
         <div className="nav-label optional-label">{tx(language, "RECURSOS OPCIONALES")}</div>
         <nav className="side-nav" aria-label={tx(language, "Recursos opcionales")}>
           {resourceNavItems.map((item) => (
@@ -504,8 +522,17 @@ function TrainingWorkspace() {
             />
           )}
           {page === "projects" && <ProjectsPage choosePage={choosePage} language={language} />}
-          {page === "knowledge" && <KnowledgeBasePage language={language} />}
-          {page === "walkthrough" && <WalkthroughPage openLesson={openLesson} modules={modules} language={language} />}
+          {page === "knowledge" && (
+            <KnowledgeBasePage language={language} openWalkthrough={() => choosePage("walkthrough")} />
+          )}
+          {page === "walkthrough" && (
+            <WalkthroughPage
+              openKnowledge={() => choosePage("knowledge")}
+              openLesson={openLesson}
+              modules={modules}
+              language={language}
+            />
+          )}
           {page === "groups" && (
             <GroupsPage
               groups={groups}
@@ -628,7 +655,10 @@ function moduleTitle(module: CourseModule): string {
 
 function pageTitle(page: Page, activeModule: CourseModule | null, language: CourseLanguage) {
   if (page === "lesson") return activeModule ? moduleTitle(activeModule) : tx(language, "Módulo");
-  return tx(language, [...navItems, ...resourceNavItems].find((item) => item.key === page)?.label ?? "Programa");
+  return tx(
+    language,
+    [...navItems, ...capstoneNavItems, ...resourceNavItems].find((item) => item.key === page)?.label ?? "Programa",
+  );
 }
 
 function HomePage({
@@ -725,13 +755,20 @@ function HomePage({
       <section className="panel start-panel">
         <p className="eyebrow">{tx(language, "PRIMEROS PASOS")}</p>
         <h2>{tx(language, "Empieza por aquí")}</h2>
+        <p className="muted">
+          <strong>{tx(language, "Este sitio es tu guía de aprendizaje.")}</strong>{" "}
+          {tx(
+            language,
+            "La app del equipo va en un repositorio Git separado. Abre ese repositorio en Codex o Claude; usa la demo de este sitio solo como referencia.",
+          )}
+        </p>
         <ol>
           <li>
             <span>
               <strong>{tx(language, "Organiza el equipo.")}</strong>{" "}
               {tx(
                 language,
-                "Repartan el trabajo entre pantallas, datos y servidor. Todo el equipo revisa que funcione.",
+                "Elijan un proyecto y asignen Producto, Web, API y Datos; QA se rota. Otra persona revisa cada cambio.",
               )}
             </span>
             <button className="button light" type="button" onClick={() => choosePage("groups")}>
@@ -740,17 +777,25 @@ function HomePage({
           </li>
           <li>
             <span>
-              <strong>{tx(language, "Lee el alcance.")}</strong>{" "}
-              {tx(language, "El capstone usa proyectos y notas de práctica, sin datos reales.")}
+              <strong>{tx(language, "Conoce el proyecto de ejemplo.")}</strong>{" "}
+              {tx(
+                language,
+                "La base de conocimiento es una demo funcional; la guía explica cómo se integra. Tu equipo puede elegir otro proyecto.",
+              )}
             </span>
-            <button className="button light" type="button" onClick={() => choosePage("walkthrough")}>
-              {tx(language, "Ver integración")}
-            </button>
+            <div className="start-actions">
+              <button className="button light" type="button" onClick={() => choosePage("knowledge")}>
+                {tx(language, "Abrir demo")}
+              </button>
+              <button className="button light" type="button" onClick={() => choosePage("walkthrough")}>
+                {tx(language, "Ver guía de integración")}
+              </button>
+            </div>
           </li>
           <li>
             <span>
               <strong>{tx(language, "Sigue la secuencia.")}</strong>{" "}
-              {tx(language, "Plan y contratos → datos/API → UI/IA → QA, revisión y demo.")}
+              {tx(language, "Brief y contrato → base de datos y API → pantalla → QA, transferencia y demo.")}
             </span>
             <button
               className="button"
@@ -765,7 +810,7 @@ function HomePage({
         <p className="muted">
           {tx(
             language,
-            "Los módulos estiman dos horas cada uno. La dedicación sugerida es de 2–8 horas semanales según la integración del equipo.",
+            "Los seis módulos suman unas 12 horas guiadas: 2 h en la semana 1, 4 h en las semanas 2 y 3, y 2 h en la semana 4. Si solo tienen 2 h por semana, acuerden extender el calendario; no salten las verificaciones.",
           )}
         </p>
         <p className="muted">
@@ -827,7 +872,7 @@ function HomePage({
           <h2>{tx(language, "Cuatro semanas. Un proyecto en equipo.")}</h2>
         </div>
         <button className="button light" type="button" onClick={() => choosePage("knowledge")}>
-          {tx(language, "Probar la base de conocimiento →")}
+          {tx(language, "Abrir demo de base de conocimiento →")}
         </button>
       </div>
       <section className="module-grid">
@@ -1062,6 +1107,12 @@ function ProjectsPage({ choosePage, language }: { choosePage: (page: Page) => vo
           "Cada equipo escoge un proyecto y lo desarrolla durante las cuatro semanas. Todos usan el stack aprobado, datos sintéticos y límites de MVP claros.",
         )}
       </p>
+      <p className="muted">
+        {tx(
+          language,
+          "Primero completen el MVP de entrenamiento y su prueba de transferencia. Las funciones siguientes son una ruta posterior; no amplíen el alcance antes de pasar esos controles.",
+        )}
+      </p>
       <div className="panel">
         <strong>{tx(language, "Stack común requerido")}</strong>
         <p>
@@ -1089,7 +1140,7 @@ function ProjectsPage({ choosePage, language }: { choosePage: (page: Page) => vo
               <strong>{tx(language, "Propósito:")}</strong>{" "}
               {language === "en" ? projectEnglish[project.code].purpose : project.purpose}
             </p>
-            <h3>{tx(language, "Alcance")}</h3>
+            <h3>{tx(language, "Alcance del MVP de entrenamiento")}</h3>
             <ul>
               {(language === "en" ? projectEnglish[project.code].scope : project.scope).map((line) => (
                 <li key={line}>{line}</li>
@@ -1101,7 +1152,7 @@ function ProjectsPage({ choosePage, language }: { choosePage: (page: Page) => vo
                 <li key={line}>{line}</li>
               ))}
             </ul>
-            <h3>{tx(language, "Mejoras opcionales")}</h3>
+            <h3>{tx(language, "Siguiente después del MVP")}</h3>
             <ul>
               {(language === "en"
                 ? projectEnglish[project.code].optionalExtensions
@@ -1110,7 +1161,7 @@ function ProjectsPage({ choosePage, language }: { choosePage: (page: Page) => vo
                 <li key={line}>{line}</li>
               ))}
             </ul>
-            <h3>{tx(language, "Fuera de alcance")}</h3>
+            <h3>{tx(language, "Fuera del MVP de cuatro semanas")}</h3>
             <ul>
               {(language === "en" ? projectEnglish[project.code].exclusions : project.exclusions).map((line) => (
                 <li key={line}>{line}</li>

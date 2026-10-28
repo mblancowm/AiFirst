@@ -4,7 +4,7 @@
 
 Crear desde cero una app pequeña para registrar citas ficticias y consultar las citas guardadas. El equipo construye la aplicación usando Codex o Claude como asistente; la app no necesita funciones de IA.
 
-## Alcance obligatorio
+## Alcance obligatorio del MVP de entrenamiento
 
 La primera versión incluye solo lo necesario para insertar y listar:
 
@@ -28,12 +28,20 @@ No hace falta comprobar disponibilidad ni impedir que dos citas tengan la misma 
 
 Solo después de completar y revisar todos los criterios obligatorios, el equipo puede agregar editar y/o eliminar citas. Cada mejora debe tener criterios propios y pruebas; no debe poner en riesgo el flujo mínimo.
 
-## Fuera de alcance
+## Fuera de alcance del MVP de cuatro semanas
 
 - Calendario de disponibilidad, reglas de horario o prevención de reservas duplicadas.
 - Cancelaciones, recordatorios, notificaciones o calendarios externos.
 - Datos reales de clientes, pagos, cuentas e integraciones externas.
 - Una función de IA dentro de la app.
+
+## Posibles siguientes incrementos del proyecto
+
+Estas funciones corresponden al flujo más amplio de agenda de la propuesta. Son tareas para después de aprobar el MVP del curso, la revisión de los cambios y la prueba de transferencia; no las agreguen para la demo de cuatro semanas.
+
+1. Registrar horarios disponibles con datos ficticios.
+2. Impedir dos citas para el mismo horario y explicar el conflicto.
+3. Cancelar una cita ficticia y volver a liberar el horario.
 
 ## Stack y uso de IA
 

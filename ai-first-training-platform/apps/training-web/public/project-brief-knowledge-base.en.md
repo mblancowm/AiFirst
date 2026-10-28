@@ -4,7 +4,7 @@
 
 Build a small app from scratch to save fictional articles and view the saved articles. The team uses Codex or Claude as a coding assistant; the app itself does not need AI features.
 
-## Required scope
+## Required scope for the training MVP
 
 The first version includes only what is needed to insert and list records:
 
@@ -26,12 +26,20 @@ The first version includes only what is needed to insert and list records:
 
 Only after all required criteria are complete and reviewed, the team may add update and/or delete for articles. Each extension needs its own criteria and checks; it must not put the minimum flow at risk.
 
-## Out of scope
+## Out of scope for the four-week MVP
 
 - Search, filters, categories, and file uploads.
 - Real internal documents, AI-generated answers, and external search.
 - Accounts, production permissions, and external integrations.
 - An AI feature inside the app.
+
+## Possible next project increments
+
+These features represent the broader knowledge base workflow in the proposal. They are for after the course MVP, change review, and transfer test are complete; do not add them to the four-week demo.
+
+1. Search fictional articles by text and category.
+2. Show the fictional source for each article.
+3. Edit articles and check that changes persist.
 
 ## Stack and AI use
 
