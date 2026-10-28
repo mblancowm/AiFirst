@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
+import { QueryProvider } from "../src/QueryProvider";
 import "../src/styles.css";
 
 export function Layout({ children }: { children: ReactNode }) {
-  return children;
+  return <QueryProvider>{children}</QueryProvider>;
 }

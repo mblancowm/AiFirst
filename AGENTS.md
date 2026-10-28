@@ -30,7 +30,7 @@ Desde `web-app/`:
 
 - Conserva el alcance de guía para participantes y la estructura existente antes de introducir nuevos flujos.
 - La interfaz debe seguir la identidad West Monroe, usar bordes finos y limpios, ser adaptable y evitar párrafos largos.
-- La UI actual no incluye autenticación ni persistencia. No las agregues, ni incorpores integraciones externas, salvo que se solicite.
+- El contenido público del sitio no requiere autenticación ni persistencia. El módulo `/admin/` usa el gateway `/users/me` y SQLite para gestionar participantes y equipos; conserva su autorización de backend y el modo local definido por `ADMIN_ACCESS_MODE=local`.
 - Usa datos sintéticos en ejemplos.
 - No agregues ni ejecutes pruebas salvo que la solicitud pida probar o verificar el cambio.
 - Nunca hagas merge en el repositorio; el alcance máximo es crear un pull request.

@@ -1,8 +1,11 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCurrentSession } from "./adminApi";
 import { LearningInterestsFooter } from "./LearningInterestsFooter";
 
-export function AppShell({ children, activePage }: { children: ReactNode; activePage: "home" | "route" | "skills" }) {
+export function AppShell({ children, activePage }: { children: ReactNode; activePage: "home" | "route" | "skills" | "participants" | "admin" }) {
   const [currentHash, setCurrentHash] = useState("");
+  const sessionQuery = useQuery({ queryKey: ["auth", "me"], queryFn: fetchCurrentSession });
 
   useEffect(() => {
     const syncHash = () => setCurrentHash(window.location.hash);
@@ -14,6 +17,9 @@ export function AppShell({ children, activePage }: { children: ReactNode; active
   const isRouteActive = activePage === "route" || (activePage === "home" && currentHash === "#fases");
   const isSkillsActive = activePage === "skills" || (activePage === "home" && currentHash === "#skills-title");
   const isArchitectureActive = activePage === "home" && currentHash === "#architecture-title";
+  const frontendBasePath = (import.meta.env.VITE_APP_FRONTEND_PATH ?? "/").replace(/\/$/, "");
+  const adminHref = `${frontendBasePath}/admin/`;
+  const participantsHref = `${frontendBasePath}/participantes/`;
 
   return (
     <div className="app-frame">
@@ -41,6 +47,12 @@ export function AppShell({ children, activePage }: { children: ReactNode; active
             Skills
           </a>
           <a href="/#architecture-title" aria-current={isArchitectureActive ? "page" : undefined}>Arquitectura</a>
+          <a href={participantsHref} aria-current={activePage === "participants" ? "page" : undefined}>
+            Participantes
+          </a>
+          {sessionQuery.data?.isAdmin && (
+            <a href={adminHref} aria-current={activePage === "admin" ? "page" : undefined}>Admin</a>
+          )}
         </nav>
       </header>
       {children}
