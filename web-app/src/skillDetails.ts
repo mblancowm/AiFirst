@@ -4,6 +4,9 @@ export type SkillDetail = {
   inputs: string[];
   result: string;
   workflow: string[];
+  exampleTitle?: string;
+  exampleIntro?: string;
+  example?: string;
   prompt: string;
   templateTitle: string;
   templateIntro: string;
@@ -26,6 +29,30 @@ export const skillDetails: Record<string, SkillDetail> = {
       "Señala brechas con evidencia y separa lo pendiente de lo que no aplica.",
       "Si se solicita inicializar, modifica únicamente los elementos aprobados que falten.",
     ],
+    exampleTitle: "Una estructura posible",
+    exampleIntro: "El monorepo reúne las apps y separa el código compartido cuando existe. La API, los paquetes y estos documentos son ejemplos opcionales: conserva solo lo que el equipo acuerde.",
+    example: `ai-first-app/
+├── AGENTS.md                 # contexto e instrucciones del agente
+├── README.md                 # cómo empezar y comandos principales
+├── package.json              # workspaces y scripts comunes
+├── bun.lock
+├── apps/
+│   ├── web/                  # Vike + React + TypeScript
+│   │   ├── package.json
+│   │   └── src/
+│   └── api/                  # Bun + Hono (si aplica)
+│       ├── package.json
+│       └── src/
+├── packages/
+│   └── contracts/            # esquemas Zod compartidos (si aplica)
+│       ├── package.json
+│       └── src/
+└── docs/
+    ├── product-context.md    # problema, usuarios y contexto de la app
+    ├── scope.md              # objetivos, límites y exclusiones
+    ├── architecture.md       # componentes e integración
+    ├── decisions/            # decisiones técnicas (ADR), si aplica
+    └── plans/                # planes aprobados o vigentes, si aplica`,
     prompt: "Crea un skill llamado “Set Up and Validate the Monorepo”. Usa el inventario aprobado y las instrucciones vigentes del repositorio. El archivo de contexto del agente es esencial: `AGENTS.md` cuando el equipo use Codex, `CLAUDE.md` cuando use Claude Code, y ambos si acuerda usar las dos herramientas. El skill debe ayudar a crear y validar ese archivo, comprobando que describa el propósito del proyecto, el mapa del repositorio, comandos de desarrollo y validación, convenciones, dónde leer el plan aprobado y qué decisiones requieren revisión humana. Después valida las demás carpetas y archivos aprobados; clasifica cada uno como presente, ausente, incompleto o no aplica. No debe exigir documentos que solo aparezcan en ejemplos ni crear un archivo Markdown para cada tema. Si se solicita inicializar, debe crear solo los elementos aprobados que falten y no sobrescribir archivos sin autorización. Al crear este skill, crea únicamente su archivo; no inicialices ni modifiques el monorepo.",
     templateTitle: "Formato de revisión del inventario",
     templateIntro: "Usa la lista que el equipo aprobó. No conviertas ejemplos de documentos en requisitos automáticos.",

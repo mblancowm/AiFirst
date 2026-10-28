@@ -480,6 +480,9 @@ h1, h2, h3 { font-family: "IBM Plex Sans", Arial, sans-serif; }
 .skill-step-list li { display: grid; min-height: 88px; grid-template-columns: 32px 1fr; align-items: start; gap: 12px; padding: 17px; border: 1px solid var(--line); background: var(--wm-color-white); animation: enter 450ms ease both; }
 .skill-step-list li > span { color: var(--wm-color-highlight-blue); font-family: "IBM Plex Sans", Arial, sans-serif; font-size: 11px; font-weight: 700; }
 .skill-step-list p { margin: 0; color: var(--wm-color-grounded-blue); font-size: 13px; line-height: 1.45; }
+.skill-detail-example { padding-top: clamp(48px, 6vw, 68px); }
+.skill-detail-example > .section-heading { margin-bottom: 18px; }
+.skill-example-tree { overflow-x: auto; margin: 0; padding: 20px 22px; border: 1px solid var(--line); color: var(--wm-color-grounded-blue); background: var(--wm-color-white); font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.7; white-space: pre; }
 .skill-detail-prompt { margin-top: clamp(48px, 6vw, 68px); padding: 22px; border: 1px solid var(--line); border-left: 2px solid var(--wm-color-highlight-magenta); background: var(--wm-color-white); animation: enter 480ms ease both; }
 .skill-detail-prompt-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .skill-detail-prompt-heading .eyebrow { margin: 0 0 8px; }

@@ -87,6 +87,19 @@ export function SkillDetailPage() {
           </ol>
         </section>
 
+        {detail.example && (
+          <section className="skill-detail-example" aria-labelledby="skill-example-title">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">REFERENCIA VISUAL</p>
+                <h2 id="skill-example-title">{detail.exampleTitle ?? "Ejemplo de estructura"}.</h2>
+              </div>
+              <p className="section-note">{detail.exampleIntro}</p>
+            </div>
+            <pre className="skill-example-tree"><code>{detail.example}</code></pre>
+          </section>
+        )}
+
         <section className="skill-detail-prompt" aria-labelledby="skill-prompt-title">
           <div className="skill-detail-prompt-heading">
             <div>
