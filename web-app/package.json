@@ -1,0 +1,27 @@
+{
+  "name": "ai-first-learning-lab-web",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "scripts": {
+    "dev": "vike dev --host 127.0.0.1 --port 3001",
+    "build": "vike build",
+    "preview": "vike preview --host 127.0.0.1 --port 3001",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "vike": "0.4.268",
+    "vike-react": "0.6.31"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
+  }
+}
