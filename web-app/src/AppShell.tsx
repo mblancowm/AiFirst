@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCurrentSession } from "./adminApi";
 import { LearningInterestsFooter } from "./LearningInterestsFooter";
 
-export function AppShell({ children, activePage }: { children: ReactNode; activePage: "home" | "route" | "skills" | "participants" | "admin" }) {
+export function AppShell({ children, activePage }: { children: ReactNode; activePage: "home" | "route" | "skills" | "participants" | "admin" | "codex" }) {
   const [currentHash, setCurrentHash] = useState("");
   const sessionQuery = useQuery({ queryKey: ["auth", "me"], queryFn: fetchCurrentSession });
 
@@ -20,6 +20,7 @@ export function AppShell({ children, activePage }: { children: ReactNode; active
   const frontendBasePath = (import.meta.env.VITE_APP_FRONTEND_PATH ?? "/").replace(/\/$/, "");
   const adminHref = `${frontendBasePath}/admin/`;
   const participantsHref = `${frontendBasePath}/participantes/`;
+  const codexHref = `${frontendBasePath}/ai-tools/codex/`;
 
   return (
     <div className="app-frame">
@@ -53,6 +54,15 @@ export function AppShell({ children, activePage }: { children: ReactNode; active
           {sessionQuery.data?.isAdmin && (
             <a href={adminHref} aria-current={activePage === "admin" ? "page" : undefined}>Admin</a>
           )}
+          <details className={`nav-dropdown${activePage === "codex" ? " is-active" : ""}`} open={activePage === "codex"}>
+            <summary className="nav-dropdown-trigger">
+              AI Tools
+              <span className="nav-caret" aria-hidden="true" />
+            </summary>
+            <div className="nav-dropdown-menu">
+              <a href={codexHref} aria-current={activePage === "codex" ? "page" : undefined}>Codex</a>
+            </div>
+          </details>
         </nav>
       </header>
       {children}
