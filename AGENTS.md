@@ -2,9 +2,9 @@
 
 ## Proyecto principal
 
-El proyecto principal para el trabajo actual es `web-app/`, el sitio AI-First Learning Lab para orientar a participantes. La experiencia presenta el programa, su ruta de cinco semanas, conceptos básicos de AI-first, skills, recomendaciones de arquitectura y propuestas de proyecto.
+El único proyecto de aplicación de este repositorio es `web-app/`, el sitio AI-First Learning Lab para orientar a participantes. La experiencia presenta el programa, su ruta de cinco semanas, conceptos básicos de AI-first, skills, recomendaciones de arquitectura y propuestas de proyecto.
 
-Usa `web-app/` como fuente de verdad para la interfaz activa. `ai-first-training-platform/` es una implementación separada con instrucciones propias en `ai-first-training-platform/AGENTS.md`; no mezcles su código, configuración ni alcance con el sitio principal, salvo que la solicitud pida trabajar allí.
+Usa `web-app/` como fuente de verdad para la interfaz y el comportamiento de la aplicación.
 
 Los documentos de `Programa Contexto/` sirven como referencia del contenido del programa. Para el comportamiento actual del sitio, revisa las páginas en `web-app/pages/` y los componentes y datos en `web-app/src/`.
 
