@@ -18,15 +18,44 @@ export const listParticipants = async () => {
   }));
 };
 
+const assertUniqueParticipantEmail = (
+  transaction: Parameters<Parameters<typeof db.transaction>[0]>[0],
+  email: string | null | undefined,
+  currentParticipantId?: number,
+) => {
+  const normalizedEmail = email?.trim().toLowerCase();
+  if (!normalizedEmail) return;
+
+  const duplicate = transaction
+    .select({ id: participants.id, email: participants.email })
+    .from(participants)
+    .all()
+    .some((participant) => participant.id !== currentParticipantId && participant.email?.trim().toLowerCase() === normalizedEmail);
+
+  if (duplicate) throw new AppError("Ya existe un participante con ese correo electrónico.", 409);
+};
+
 export const createParticipant = async (input: unknown) => {
   const values = participantWriteSchema.parse(input);
-  const [participant] = await db.insert(participants).values(values).returning();
-  return participant;
+  return db.transaction((transaction) => {
+    assertUniqueParticipantEmail(transaction, values.email);
+    return transaction.insert(participants).values(values).returning().get();
+  });
 };
 
 export const updateParticipant = async (participantId: number, input: unknown) => {
   const values = participantUpdateSchema.parse(input);
-  const [participant] = await db.update(participants).set(values).where(eq(participants.id, participantId)).returning();
+  const participant = db.transaction((transaction) => {
+    const existingParticipant = transaction
+      .select({ id: participants.id })
+      .from(participants)
+      .where(eq(participants.id, participantId))
+      .get();
+    if (!existingParticipant) throw new AppError("No se encontró el participante.", 404);
+
+    assertUniqueParticipantEmail(transaction, values.email, participantId);
+    return transaction.update(participants).set(values).where(eq(participants.id, participantId)).returning().get();
+  });
   if (!participant) throw new AppError("No se encontró el participante.", 404);
   return participant;
 };

@@ -2,9 +2,9 @@
 
 Sitio para orientar a los participantes, hecho con React, TypeScript, Vike, Vite, Tailwind CSS y Bun. La API usa Hono, Drizzle y SQLite.
 
-La portada presenta el programa, las cinco semanas, seis skills, arquitectura recomendada, ideas de proyecto y enlaces importantes. `/participantes/` es pública y muestra los grupos con los nombres de sus integrantes. `/skills/<id>/` contiene el detalle de cada skill. Admin separa la gestión en `/admin/participants/` y `/admin/teams/`, con un resumen en `/admin/`.
+La portada presenta el programa, las cinco semanas, seis skills, arquitectura recomendada, ideas de proyecto y enlaces importantes. `/participantes/` es pública y muestra los grupos con los nombres de sus integrantes. `/skills/<id>/` contiene el detalle de cada skill. Admin permite buscar participantes y separa la gestión en `/admin/participants/` y `/admin/teams/`, con un resumen en `/admin/`.
 
-Un equipo admite hasta cuatro integrantes, y cada participante puede integrar como máximo un equipo. La mentoría es independiente: puede asignarse a alguien del mismo equipo o de fuera, y una persona puede mentorear varios equipos.
+Un equipo admite hasta cuatro integrantes, y cada participante puede integrar como máximo un equipo. El email es opcional, pero cuando se proporciona debe ser único, sin distinguir mayúsculas. La mentoría es independiente: puede asignarse a alguien del mismo equipo o de fuera, y una persona puede mentorear varios equipos.
 
 ## Local development
 

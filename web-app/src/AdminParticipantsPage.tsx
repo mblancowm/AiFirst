@@ -13,6 +13,7 @@ export function AdminParticipantsPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [draft, setDraft] = useState<ParticipantInput>(EMPTY_PARTICIPANT);
+  const [searchText, setSearchText] = useState("");
   const [feedback, setFeedback] = useState("");
 
   const refreshData = async () => {
@@ -67,10 +68,19 @@ export function AdminParticipantsPage() {
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFeedback("");
+    if (duplicateEmailParticipant) return;
     saveMutation.mutate({ id: editingId, input: draft });
   };
 
   const participants = participantsQuery.data ?? [];
+  const normalizedSearch = searchText.trim().toLocaleLowerCase();
+  const filteredParticipants = normalizedSearch
+    ? participants.filter((participant) => `${participant.name} ${participant.email ?? ""} ${participant.team?.name ?? ""}`.toLocaleLowerCase().includes(normalizedSearch))
+    : participants;
+  const normalizedDraftEmail = draft.email.trim().toLowerCase();
+  const duplicateEmailParticipant = normalizedDraftEmail
+    ? participants.find((participant) => participant.id !== editingId && participant.email?.trim().toLowerCase() === normalizedDraftEmail)
+    : undefined;
   const errorMessage = saveMutation.error?.message ?? deleteMutation.error?.message ?? participantsQuery.error?.message;
 
   return (
@@ -105,23 +115,49 @@ export function AdminParticipantsPage() {
                 <input id="participant-name" autoComplete="name" maxLength={100} onChange={(event) => setDraft((current) => ({ ...current, name: event.target.value }))} required value={draft.name} />
               </label>
               <label htmlFor="participant-email">Email <span>(opcional)</span>
-                <input id="participant-email" autoComplete="email" maxLength={254} onChange={(event) => setDraft((current) => ({ ...current, email: event.target.value }))} type="email" value={draft.email} />
+                <input
+                  id="participant-email"
+                  aria-describedby={duplicateEmailParticipant ? "participant-email-error" : undefined}
+                  aria-invalid={duplicateEmailParticipant ? true : undefined}
+                  autoComplete="email"
+                  maxLength={254}
+                  onChange={(event) => {
+                    saveMutation.reset();
+                    setDraft((current) => ({ ...current, email: event.target.value }));
+                  }}
+                  type="email"
+                  value={draft.email}
+                />
+                {duplicateEmailParticipant && <small className="admin-email-error" id="participant-email-error" role="alert">Ya existe un participante con ese correo.</small>}
               </label>
             </div>
             <div className="admin-form-actions">
-              <button className="admin-primary-button" disabled={saveMutation.isPending} type="submit">
+              <button className="admin-primary-button" disabled={saveMutation.isPending || Boolean(duplicateEmailParticipant)} type="submit">
                 {saveMutation.isPending ? "Guardando…" : editingId === null ? "Agregar participante" : "Guardar cambios"}
               </button>
             </div>
           </form>
         )}
 
+        <div className="admin-list-search">
+          <label htmlFor="participants-search">Buscar participantes <span>Filtra por nombre, correo o equipo</span></label>
+          <input
+            autoComplete="off"
+            id="participants-search"
+            onChange={(event) => setSearchText(event.target.value)}
+            placeholder="Escribe para filtrar la lista"
+            type="search"
+            value={searchText}
+          />
+          {normalizedSearch && <p className="admin-search-hint" aria-live="polite">{filteredParticipants.length} {filteredParticipants.length === 1 ? "resultado" : "resultados"}</p>}
+        </div>
+
         {participantsQuery.isPending ? <p className="admin-loading">Cargando participantes…</p> : (
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead><tr><th scope="col">Nombre</th><th scope="col">Email</th><th scope="col">Equipo</th><th scope="col"><span className="sr-only">Acciones</span></th></tr></thead>
               <tbody>
-                {participants.map((participant) => (
+                {filteredParticipants.map((participant) => (
                   <tr key={participant.id}>
                     <td data-label="Nombre"><strong>{participant.name}</strong></td>
                     <td data-label="Email">{participant.email || "—"}</td>
@@ -138,6 +174,7 @@ export function AdminParticipantsPage() {
                   </tr>
                 ))}
                 {!participants.length && !participantsQuery.isPending && <tr><td className="admin-empty-cell" colSpan={4}>Todavía no hay participantes registrados.</td></tr>}
+                {participants.length > 0 && !filteredParticipants.length && <tr><td className="admin-empty-cell" colSpan={4}>No encontramos participantes con ese criterio.</td></tr>}
               </tbody>
             </table>
           </div>
