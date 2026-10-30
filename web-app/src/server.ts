@@ -13,7 +13,11 @@ const rawBackendPath = process.env.APP_BACKEND_PATH ?? `${frontendPath}/api`;
 const backendPath = `/${rawBackendPath.replace(/^\/+|\/+$/g, "")}`;
 migrate(db, { migrationsFolder: resolve(import.meta.dir, "../drizzle") });
 const initialRosterResult = seedInitialRoster();
-console.info(`Initial roster: ${initialRosterResult}.`);
+if (initialRosterResult.status === "skipped-conflict") {
+  console.warn(`Initial roster sync skipped: ${initialRosterResult.reason}.`);
+} else {
+  console.info(`Initial roster: ${initialRosterResult.status}.`);
+}
 
 const app = new Hono();
 app.get(`${backendPath}/health`, (context) => context.json({ status: "ok" }));
