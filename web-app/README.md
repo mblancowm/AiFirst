@@ -2,9 +2,9 @@
 
 Sitio para orientar a los participantes, hecho con React, TypeScript, Vike, Vite, Tailwind CSS y Bun. La API usa Hono, Drizzle y SQLite.
 
-La portada presenta el programa, las cinco semanas, seis skills, arquitectura recomendada, ideas de proyecto y enlaces importantes. `/participantes/` es pública y muestra los grupos con los nombres de sus integrantes. `/skills/<id>/` contiene el detalle de cada skill. Admin separa la gestión en `/admin/participants/` y `/admin/teams/`, con un resumen en `/admin/`.
+La portada presenta el programa, las cinco semanas, seis skills, arquitectura recomendada, ideas de proyecto y enlaces importantes. `/participantes/` es pública y muestra los grupos con los nombres de sus integrantes. `/skills/<id>/` contiene el detalle de cada skill. Admin permite buscar participantes y separa la gestión en `/admin/participants/` y `/admin/teams/`, con un resumen en `/admin/`.
 
-Un equipo admite hasta cuatro integrantes, y cada participante puede integrar como máximo un equipo. La mentoría es independiente: puede asignarse a alguien del mismo equipo o de fuera, y una persona puede mentorear varios equipos.
+Un equipo admite hasta cuatro integrantes, y cada participante puede integrar como máximo un equipo. El email es opcional, pero cuando se proporciona debe ser único, sin distinguir mayúsculas. La mentoría es independiente: puede asignarse a alguien del mismo equipo o de fuera, y una persona puede mentorear varios equipos.
 
 ## Local development
 
@@ -22,4 +22,4 @@ En los demás entornos, deja `ADMIN_ACCESS_MODE` sin valor `local`. La API valid
 
 Configura `APP_FRONTEND_PATH`, `APP_BACKEND_PATH`, `API_PORT`, `HOST` y `DATABASE_URL` en el entorno del servidor. `APP_BACKEND_PATH` debe ser el prefijo bajo el que el gateway enruta las solicitudes a la API. Usa `HOST=0.0.0.0` cuando el runtime deba recibir tráfico de un proxy o contenedor. No configures `ADMIN_ACCESS_MODE=local` en un entorno compartido.
 
-En producción, configura `DATABASE_URL` con una ruta persistente para SQLite y arranca el servidor con `bun run start:api`; aplica las migraciones y ejecuta el seed inicial de forma transaccional. El seed solo escribe en una base sin participantes ni equipos, y su marcador evita repetirlo después del primer arranque. Para ejecutarlo manualmente antes del servidor, usa `bun run db:seed`. Para generar una migración al cambiar el esquema, ejecuta `bun run db:generate` desde `web-app/`.
+En producción, configura `DATABASE_URL` con una ruta persistente para SQLite y arranca el servidor con `bun run start:api`; las migraciones y la sincronización del roster se ejecutan de forma transaccional al iniciar. El seed v2 carga bases vacías y actualiza bases que tengan el marcador v1: conserva los IDs de participantes y mentores, incorpora las altas nuevas y reorganiza las membresías de los grupos `Grupo 1` a `Grupo 11`. No elimina participantes ni equipos ajenos al roster. Si detecta integrantes no incluidos en el roster dentro de esos grupos, o participantes del roster asignados a equipos externos, omite la sincronización y registra el conflicto para revisión. También puedes ejecutarlo manualmente con `bun run db:seed`. Para generar una migración al cambiar el esquema, ejecuta `bun run db:generate` desde `web-app/`.

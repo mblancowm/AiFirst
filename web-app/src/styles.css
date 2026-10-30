@@ -426,12 +426,18 @@ h1, h2, h3 { font-family: "IBM Plex Sans", Arial, sans-serif; }
 .admin-list-heading .eyebrow { margin: 0 0 7px; }
 .admin-list-heading h2 { margin: 0 0 5px; font-size: clamp(21px, 2.6vw, 27px); font-weight: 600; }
 .admin-list-heading p:not(.eyebrow) { margin: 0; color: var(--wm-color-dark-gray); font-size: 12px; }
+.admin-list-search { display: grid; max-width: 520px; gap: 7px; }
+.admin-list-search label { display: grid; gap: 3px; color: var(--wm-color-grounded-blue); font-size: 12px; font-weight: 600; }
+.admin-list-search label > span { color: var(--wm-color-dark-gray); font-size: 11px; font-weight: 400; }
+.admin-list-search input { width: 100%; min-height: 41px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 0; color: var(--wm-color-grounded-blue); background: var(--wm-color-white); font: inherit; font-size: 13px; }
+.admin-list-search input:focus { border-color: var(--wm-color-highlight-blue); outline: 2px solid rgb(0 71 255 / 14%); outline-offset: 1px; }
 .admin-expanded-form { gap: 16px; margin-bottom: 3px; animation: enter 260ms ease both; }
 .admin-form-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .admin-form-title h3 { margin: 0; color: var(--wm-color-grounded-blue); font-size: 18px; font-weight: 600; }
 .admin-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .admin-expanded-form label { display: grid; gap: 7px; color: var(--wm-color-grounded-blue); font-size: 12px; font-weight: 600; }
 .admin-expanded-form label > span { color: var(--wm-color-dark-gray); font-size: 11px; font-weight: 400; }
+.admin-email-error { color: #a43950; font-size: 11px; font-weight: 400; }
 .admin-expanded-form input:not([type="checkbox"]), .admin-expanded-form select { width: 100%; min-height: 41px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 0; color: var(--wm-color-grounded-blue); background: var(--wm-color-white); font: inherit; font-size: 13px; }
 .admin-expanded-form input:focus, .admin-expanded-form select:focus { border-color: var(--wm-color-highlight-blue); outline: 2px solid rgb(0 71 255 / 14%); outline-offset: 1px; }
 .admin-search-control { position: relative; }

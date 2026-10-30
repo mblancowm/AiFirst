@@ -6,7 +6,11 @@ import { seedInitialRoster } from "../src/core-logic/participants/seed-initial-r
 try {
   migrate(db, { migrationsFolder: resolve(import.meta.dir, "../drizzle") });
   const result = seedInitialRoster();
-  console.info(`Initial roster: ${result}.`);
+  if (result.status === "skipped-conflict") {
+    console.warn(`Initial roster sync skipped: ${result.reason}.`);
+  } else {
+    console.info(`Initial roster: ${result.status}.`);
+  }
 } finally {
   sqlite.close();
 }
