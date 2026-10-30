@@ -1,0 +1,38 @@
+{
+  "name": "ai-first-learning-lab-web",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "scripts": {
+    "dev": "bun scripts/dev.ts",
+    "dev:web": "vike dev --host 127.0.0.1 --port 3001",
+    "dev:api": "bun --watch src/server.ts",
+    "start:api": "bun src/server.ts",
+    "build": "vike build",
+    "preview": "vike preview --host 127.0.0.1 --port 3001",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:seed": "bun scripts/seed-initial-roster.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.105.0",
+    "drizzle-orm": "^0.45.4",
+    "hono": "^4.13.14",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "vike": "0.4.268",
+    "vike-react": "0.6.31",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "@types/bun": "^1.4.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "drizzle-kit": "^0.31.11",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
+  }
+}

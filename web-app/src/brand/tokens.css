@@ -1,0 +1,165 @@
+:root {
+  /* Primary palette */
+  --wm-color-canvas-gray: #f8f8f8;
+  --wm-color-white: #ffffff;
+  --wm-color-grounded-blue: #070154;
+
+  /* Accent palette */
+  --wm-color-highlight-magenta: #f900d3;
+  --wm-color-highlight-blue: #0047ff;
+
+  /* Supporting neutrals */
+  --wm-color-dark-gray: #50658e;
+  --wm-color-medium-gray: #ced7e6;
+  --wm-color-light-gray: #e8eef8;
+
+  /* Data visualization: categorical sequence */
+  --wm-data-categorical-1: #f900d3;
+  --wm-data-categorical-2: #00e8fa;
+  --wm-data-categorical-3: #1dd566;
+  --wm-data-categorical-4: #ffc700;
+  --wm-data-categorical-5: #b641ff;
+  --wm-data-categorical-6: #00fcb0;
+  --wm-data-categorical-7: #ff8a00;
+  --wm-data-categorical-8: #00a3ff;
+  --wm-data-categorical-9: #f52c00;
+
+  /* Data visualization: KPI sequence */
+  --wm-data-kpi-positive: #1dd566;
+  --wm-data-kpi-median: #ffc700;
+  --wm-data-kpi-negative: #f52c00;
+
+  /* Data visualization: deemphasis sequence */
+  --wm-data-deemphasis-1: #e8eef8;
+  --wm-data-deemphasis-2: #ced7e6;
+  --wm-data-deemphasis-3: #8da3ba;
+
+  /* Semantic color defaults */
+  --wm-surface-primary: var(--wm-color-canvas-gray);
+  --wm-surface-content: var(--wm-color-white);
+  --wm-surface-secondary: var(--wm-color-grounded-blue);
+  --wm-surface-muted: var(--wm-color-light-gray);
+  --wm-text-primary: var(--wm-color-grounded-blue);
+  --wm-text-secondary: var(--wm-color-dark-gray);
+  --wm-text-inverse: var(--wm-color-white);
+  --wm-link: var(--wm-color-highlight-blue);
+  --wm-link-hover: var(--wm-color-highlight-magenta);
+
+  /* Current confirmed global brand constraints */
+  --wm-corner-radius-default: 0;
+  --wm-corner-radius-small-exception: 4px;
+  --wm-corner-radius-button: 80px;
+  --wm-corner-radius-search: 80px;
+  --wm-corner-radius-dropdown: 20px;
+  --wm-corner-radius-max-layout-without-review: 8px;
+  --wm-gradients-allowed: 0;
+  --wm-shadows-allowed: 0;
+  --wm-shadow-default: none;
+  --wm-border-width-default: 1px;
+  --wm-border-width-strong: 2px;
+  --wm-border-color-primary: var(--wm-color-grounded-blue);
+  --wm-border-color-accent: var(--wm-color-highlight-magenta);
+  --wm-border-color-neutral: var(--wm-color-medium-gray);
+
+  /* Typography */
+  --wm-font-family-heading: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+  --wm-font-family-body: Arial, Helvetica, sans-serif;
+  --wm-font-weight-regular: 400;
+  --wm-font-weight-medium: 500;
+  --wm-font-weight-semibold: 600;
+  --wm-font-weight-bold: 700;
+
+  --wm-type-display-size: 42px;
+  --wm-type-display-line-height: 1.2;
+  --wm-type-display-letter-spacing: 0.05em;
+  --wm-type-display-font-weight: var(--wm-font-weight-bold);
+  --wm-type-display-text-transform: uppercase;
+
+  --wm-type-h1-size: 28px;
+  --wm-type-h1-line-height: 1.2;
+  --wm-type-h1-letter-spacing: 0.05em;
+  --wm-type-h1-font-weight: var(--wm-font-weight-bold);
+  --wm-type-h1-text-transform: uppercase;
+
+  --wm-type-h2-size: 24px;
+  --wm-type-h2-line-height: 1.2;
+  --wm-type-h2-letter-spacing: 0.05em;
+  --wm-type-h2-font-weight: var(--wm-font-weight-bold);
+  --wm-type-h2-text-transform: uppercase;
+
+  --wm-type-h3-size: 20px;
+  --wm-type-h3-line-height: 1.3;
+  --wm-type-h3-letter-spacing: 0;
+  --wm-type-h3-font-weight: var(--wm-font-weight-bold);
+  --wm-type-h3-text-transform: none;
+
+  --wm-type-subhead-size: 30px;
+  --wm-type-subhead-line-height: 1.3;
+  --wm-type-subhead-letter-spacing: 0;
+  --wm-type-subhead-font-weight: var(--wm-font-weight-bold);
+  --wm-type-subhead-text-transform: none;
+
+  --wm-type-p1-size: 36px;
+  --wm-type-p1-line-height: 1.3;
+  --wm-type-p1-letter-spacing: 0;
+  --wm-type-p1-font-weight: var(--wm-font-weight-regular);
+
+  --wm-type-p2-size: 18px;
+  --wm-type-p2-line-height: 1.3;
+  --wm-type-p2-letter-spacing: 0;
+  --wm-type-p2-font-weight: var(--wm-font-weight-regular);
+
+  --wm-type-p3-size: 16px;
+  --wm-type-p3-line-height: 1.3;
+  --wm-type-p3-letter-spacing: 0;
+  --wm-type-p3-font-weight: var(--wm-font-weight-regular);
+
+  --wm-type-p4-size: 14px;
+  --wm-type-p4-line-height: 1.3;
+  --wm-type-p4-letter-spacing: 0;
+  --wm-type-p4-font-weight: var(--wm-font-weight-regular);
+
+  --wm-type-p5-size: 11px;
+  --wm-type-p5-line-height: 1.3;
+  --wm-type-p5-letter-spacing: 0;
+  --wm-type-p5-font-weight: var(--wm-font-weight-regular);
+
+  --wm-type-large-stats-size: 120px;
+  --wm-type-large-stats-line-height: 1.3;
+  --wm-type-large-stats-letter-spacing: 0;
+  --wm-type-large-stats-font-weight: var(--wm-font-weight-medium);
+
+  --wm-type-global-nav-size: 16px;
+  --wm-type-global-nav-line-height: 1.3;
+  --wm-type-global-nav-letter-spacing: 0;
+  --wm-type-global-nav-font-weight: var(--wm-font-weight-semibold);
+
+  --wm-type-sub-nav-size: 25px;
+  --wm-type-sub-nav-line-height: 1.3;
+  --wm-type-sub-nav-letter-spacing: 0;
+  --wm-type-sub-nav-font-weight: var(--wm-font-weight-regular);
+
+  --wm-type-eyebrow-size: 15px;
+  --wm-type-eyebrow-line-height: 1.3;
+  --wm-type-eyebrow-letter-spacing: 0.1em;
+  --wm-type-eyebrow-font-weight: var(--wm-font-weight-bold);
+  --wm-type-eyebrow-text-transform: uppercase;
+
+  --wm-type-large-link-size: 56px;
+  --wm-type-large-link-line-height: 1.2;
+  --wm-type-large-link-letter-spacing: 0;
+  --wm-type-large-link-font-weight: var(--wm-font-weight-bold);
+  --wm-type-large-link-text-transform: uppercase;
+
+  --wm-type-title-link-size: 20px;
+  --wm-type-title-link-line-height: 1.2;
+  --wm-type-title-link-letter-spacing: 0;
+  --wm-type-title-link-font-weight: var(--wm-font-weight-bold);
+  --wm-type-title-link-text-transform: uppercase;
+
+  --wm-type-title-link-2-size: 12px;
+  --wm-type-title-link-2-line-height: 1.3;
+  --wm-type-title-link-2-letter-spacing: 0;
+  --wm-type-title-link-2-font-weight: var(--wm-font-weight-bold);
+  --wm-type-title-link-2-text-transform: none;
+}
